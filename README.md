@@ -25,3 +25,12 @@ The production output is in `dist` and can be deployed to any static host
 - `src/app.css` — responsive styles
 - `public/favicon.svg` — site icon
 - `index.html` — page title and HTML entry point
+
+## Docker
+
+```sh
+docker build -t gay-dev-landing .
+docker run --rm -p 3000:3000 gay-dev-landing
+```
+
+Open http://localhost:3000 to view the production site
