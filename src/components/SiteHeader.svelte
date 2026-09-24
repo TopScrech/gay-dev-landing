@@ -143,6 +143,9 @@
   .open .bars i:last-child { transform: translateY(-4.5px) rotate(-45deg); }
 
   @media (max-width: 760px) {
+    /* Expose a solid header on first paint, before Safari samples its top edge */
+    .site-header { background-color: oklch(0.12 0.03 160); }
+    .site-header::before { opacity: 1; }
     .menu-toggle { display: block; }
     nav {
       position: fixed;

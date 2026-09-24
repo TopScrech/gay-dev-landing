@@ -37,7 +37,7 @@
   --header-h: calc(76px + var(--header-safe-top));
   --radius: 0;
   --z-sticky: 10;
-  --z-grain: 20;
+  --z-grain: 5;
   --z-skip: 30;
 
   font-family: var(--font-body);
@@ -55,7 +55,7 @@
 * { box-sizing: border-box; }
 html { scroll-padding-top: calc(var(--header-h) + 16px); }
 body { margin: 0; min-width: 320px; background: var(--night); }
-/* A film of grain over everything, so no surface reads as clean digital flat colour */
+/* Keep the grain below navigation so it cannot obscure Safari's header color sampling */
 body::after {
   content: '';
   position: fixed;
