@@ -76,7 +76,7 @@
     background: oklch(0.12 0.03 160 / 0.97);
     mask:
       linear-gradient(#000, #000) top / 100% calc(100% - 12px) no-repeat,
-      var(--torn-bottom) left bottom / 240px 12px repeat-x;
+      url("/images/header-torn-edge.svg") left bottom / 100% 12px no-repeat;
     opacity: 0;
     transition: opacity 0.4s var(--ease-out);
   }
