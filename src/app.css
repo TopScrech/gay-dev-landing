@@ -30,7 +30,7 @@
   --chip-c: polygon(0 1.5%, 22% 0, 57% 1.8%, 100% 0, 99.2% 35%, 100% 99%, 70% 98%, 35% 100%, 0.5% 98.5%, 1% 70%);
 
   --font-display: 'Grenze Gotisch', 'Grenze', Georgia, serif;
-  --font-body: 'Alegreya', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Mali', system-ui, sans-serif;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --gutter: clamp(16px, 5vw, 72px);
   --header-safe-top: env(safe-area-inset-top, 0px);
