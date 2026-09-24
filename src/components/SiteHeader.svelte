@@ -65,7 +65,7 @@
     justify-content: space-between;
     gap: 24px;
     height: var(--header-h);
-    padding: 0 var(--gutter);
+    padding: var(--header-safe-top) max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px));
   }
   /* Once scrolled, a band of night with a ragged lower edge, like a strip torn from the dark */
   .site-header::before {
