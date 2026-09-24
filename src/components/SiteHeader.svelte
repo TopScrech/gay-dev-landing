@@ -65,18 +65,21 @@
     justify-content: space-between;
     gap: 24px;
     height: var(--header-h);
-    padding: 0 var(--gutter);
+    padding: var(--header-safe-top) max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px));
   }
-  /* Once scrolled, a band of night with a ragged lower edge, like a strip torn from the dark */
+  /* Safari samples the fixed element's own background for the status-bar area */
+  .site-header.scrolled, .site-header.open {
+    background-color: oklch(0.12 0.03 160);
+  }
+  /* Keep the decorative mask below the header's solid background */
   .site-header::before {
     content: '';
     position: absolute;
-    inset: 0 0 -12px;
+    inset: 100% 0 auto;
+    height: 12px;
     z-index: -1;
-    background: oklch(0.12 0.03 160 / 0.97);
-    mask:
-      linear-gradient(#000, #000) top / 100% calc(100% - 12px) no-repeat,
-      var(--torn-bottom) left bottom / 240px 12px repeat-x;
+    background: oklch(0.12 0.03 160);
+    mask: url("/images/header-torn-edge.svg") left top / 100% 12px no-repeat;
     opacity: 0;
     transition: opacity 0.4s var(--ease-out);
   }
@@ -140,6 +143,9 @@
   .open .bars i:last-child { transform: translateY(-4.5px) rotate(-45deg); }
 
   @media (max-width: 760px) {
+    /* Expose a solid header on first paint, before Safari samples its top edge */
+    .site-header { background-color: oklch(0.12 0.03 160); }
+    .site-header::before { opacity: 1; }
     .menu-toggle { display: block; }
     nav {
       position: fixed;
