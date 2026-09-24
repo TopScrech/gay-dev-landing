@@ -1,12 +1,7 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
   import PageHero from '../components/PageHero.svelte'
-  import { location_ } from '../lib/router.svelte'
-  import { GAME_TITLE, STUDIO_NAME, TEAM_LAYOUT, team, type TeamLayout } from '../lib/site'
-
-  const dev = import.meta.env.DEV
-  const fromQuery = new URLSearchParams(location_.search).get('team')
-  let layout = $state<TeamLayout>(fromQuery === 'cards' || fromQuery === 'photo' ? fromQuery : TEAM_LAYOUT)
+  import { GAME_TITLE, teams } from '../lib/site'
 </script>
 
 <PageHero title="About" image="/images/about/hero.jpg">
@@ -33,38 +28,29 @@
 </section>
 
 <section class="team container" aria-labelledby="team-title">
-  <div class="team-head">
-    <h2 id="team-title">The team</h2>
-    {#if dev}
-      <div class="layout-switch" role="group" aria-label="Team layout preview (dev only)">
-        <button aria-pressed={layout === 'cards'} onclick={() => (layout = 'cards')}>Cards</button>
-        <button aria-pressed={layout === 'photo'} onclick={() => (layout = 'photo')}>Group photo</button>
-      </div>
-    {/if}
+  <h2 id="team-title">Our teams</h2>
+  <div class="teams">
+    {#each teams as team (team.slug)}
+      <section class="department" aria-labelledby="team-{team.slug}">
+        <h3 id="team-{team.slug}">{team.name}</h3>
+        <div class="team-description">
+          {#each team.paragraphs as paragraph (paragraph)}
+            <p>{paragraph}</p>
+          {/each}
+        </div>
+        <div class="team-photos">
+          <figure class="lead">
+            <Asset src="/images/team/{team.slug}/lead.jpg" alt="{team.name} team lead" ratio="4 / 5" />
+            <figcaption>Team lead</figcaption>
+          </figure>
+          <figure class="group">
+            <Asset src="/images/team/{team.slug}/group.jpg" alt="The {team.name} team together" ratio="16 / 10" />
+            <figcaption>The {team.name} team</figcaption>
+          </figure>
+        </div>
+      </section>
+    {/each}
   </div>
-
-  {#if layout === 'cards'}
-    <ul class="cards">
-      {#each team as m (m.slug)}
-        <li>
-          <Asset src="/images/team/{m.slug}.jpg" alt="Portrait of {m.name}" ratio="4 / 5" />
-          <h3>{m.name}</h3>
-          <p class="role">{m.role}</p>
-          <p class="bio">{m.bio}</p>
-        </li>
-      {/each}
-    </ul>
-  {:else}
-    <Asset class="group" src="/images/team/group.jpg" alt="The {STUDIO_NAME} team" />
-    <ul class="roster">
-      {#each team as m (m.slug)}
-        <li>
-          <span class="name">{m.name}</span>
-          <span class="role">{m.role}</span>
-        </li>
-      {/each}
-    </ul>
-  {/if}
 </section>
 
 <style>
@@ -80,52 +66,24 @@
   .story-text h2 { margin-bottom: 28px; }
 
   .team { padding-block: clamp(48px, 6vw, 80px) clamp(96px, 12vw, 160px); }
-  .team-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px); }
-  .layout-switch { display: inline-flex; padding: 3px; border: 1px dashed var(--night-line); border-radius: 999px; font-size: 0.85rem; }
-  .layout-switch button {
-    padding: 6px 14px;
-    border: 0;
-    border-radius: 999px;
-    background: none;
-    color: var(--ink-soft);
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .layout-switch button[aria-pressed='true'] { background: var(--night-raise); color: var(--ink); }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: clamp(28px, 3vw, 40px) clamp(16px, 2vw, 28px);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .cards h3 { margin-top: 16px; font-size: 1.6rem; }
-  .role { margin: 4px 0 0; color: var(--wisp); font-weight: 600; font-size: 0.95rem; }
-  .bio { margin: 10px 0 0; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.55; }
-  .cards li :global(.asset) { transition: transform 0.5s var(--ease-out); }
-  .cards li:hover :global(.asset) { transform: translateY(-4px) rotate(-0.6deg); }
-
-  .team :global(.group) { aspect-ratio: 21 / 9; }
-  .roster {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px 32px;
-    margin: 28px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-  .roster li { display: grid; gap: 2px; }
-  .name { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.15; }
+  .team > h2 { margin-bottom: clamp(28px, 4vw, 48px); }
+  .teams { display: grid; gap: clamp(48px, 7vw, 88px); }
+  .department { border-top: 1px solid var(--night-line); padding-top: 24px; }
+  .department h3 { margin: 0 0 24px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+  .team-description { max-width: 65ch; margin-bottom: clamp(24px, 3vw, 40px); color: var(--ink-soft); font-size: 1.075rem; }
+  .team-description p { margin: 0; }
+  .team-description p + p { margin-top: 1em; }
+  .team-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
+  figure { margin: 0; min-width: 0; }
+  figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--ink-soft); }
+  .lead figcaption { color: var(--wisp); }
 
   @media (max-width: 860px) {
     .story { grid-template-columns: 1fr; }
     .story :global(.story-art) { aspect-ratio: 16 / 10 !important; }
-    .team :global(.group) { aspect-ratio: 4 / 3; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .cards li :global(.asset) { transition: none; }
+  @media (max-width: 540px) {
+    .team-photos { grid-template-columns: 1fr; gap: 24px; }
+    .lead { width: 60%; }
   }
 </style>

@@ -13,7 +13,7 @@
 <article class="post">
   <header class="container narrow">
     <a class="back" href="/devlog"><span aria-hidden="true">←</span> All posts</a>
-    <p class="meta">Devlog #{post.number} · <time datetime={post.date}>{formatDate(post.date)}</time></p>
+    <p class="meta"><time datetime={post.date}>{formatDate(post.date)}</time></p>
     <h1>{post.title}</h1>
     <ul class="tags" aria-label="Tags">
       {#each post.tags as tag (tag)}<li>{tag}</li>{/each}

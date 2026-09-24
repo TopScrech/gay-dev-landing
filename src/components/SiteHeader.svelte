@@ -48,7 +48,7 @@
 
   <nav id="site-nav" aria-label="Main">
     {#each nav as item (item.href)}
-      <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+      <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}><span>{item.label}</span></a>
     {/each}
     <WishlistButton compact />
   </nav>
@@ -94,18 +94,22 @@
     transition: color 0.2s;
   }
   nav a:not(:global(.wishlist)):hover, nav a[aria-current='page'] { color: var(--ink); }
-  nav a[aria-current='page']::after {
+  /* Current tab: a wisp line exactly as wide as the label */
+  nav a span { position: relative; }
+  nav a span::after {
     content: '';
     position: absolute;
-    left: 50%;
-    bottom: -4px;
-    width: 5px;
-    height: 5px;
-    margin-left: -2.5px;
-    border-radius: 50%;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 1px;
     background: var(--wisp);
     box-shadow: 0 0 8px var(--wisp);
+    transform: scaleX(0);
+    transition: transform 0.35s var(--ease-out);
   }
+  nav a[aria-current='page'] span::after { transform: scaleX(1); }
   .menu-toggle {
     display: none;
     width: 44px;
@@ -149,10 +153,9 @@
       transition: clip-path 0.4s var(--ease-out);
     }
     nav a:not(:global(.wishlist)) { padding: 14px 0; border-bottom: 1px solid var(--night-line); }
-    nav a[aria-current='page']::after { left: auto; right: 4px; top: 50%; bottom: auto; margin-top: -2.5px; }
     nav :global(.wishlist) { margin-top: 20px; justify-content: center; }
   }
   @media (prefers-reduced-motion: reduce) {
-    nav, .open nav { transition: none; }
+    nav, .open nav, nav a span::after { transition: none; }
   }
 </style>

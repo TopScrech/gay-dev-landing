@@ -16,7 +16,7 @@
       <Asset src="/images/blog/{featured.slug}.jpg" alt="" ratio="3 / 2" eager />
     </a>
     <div>
-      <p class="meta">Devlog #{featured.number} · <time datetime={featured.date}>{formatDate(featured.date)}</time></p>
+      <p class="meta"><time datetime={featured.date}>{formatDate(featured.date)}</time></p>
       <h2><a href="/devlog/{featured.slug}">{featured.title}</a></h2>
       <p class="excerpt">{featured.excerpt}</p>
       <a class="text-link" href="/devlog/{featured.slug}">Read the post<span class="visually-hidden">: {featured.title}</span></a>
@@ -29,7 +29,7 @@
         <a href="/devlog/{post.slug}">
           <Asset src="/images/blog/{post.slug}.jpg" alt="" ratio="3 / 2" />
           <span class="body">
-            <span class="meta">Devlog #{post.number} · <time datetime={post.date}>{formatDate(post.date)}</time></span>
+            <span class="meta"><time datetime={post.date}>{formatDate(post.date)}</time></span>
             <span class="title">{post.title}</span>
             <span class="excerpt">{post.excerpt}</span>
           </span>

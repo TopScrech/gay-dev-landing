@@ -98,7 +98,7 @@
     {#each posts.slice(0, 3) as post (post.slug)}
       <li>
         <a href="/devlog/{post.slug}">
-          <span class="row-meta">#{post.number} · <time datetime={post.date}>{formatDate(post.date)}</time></span>
+          <span class="row-meta"><time datetime={post.date}>{formatDate(post.date)}</time></span>
           <span class="row-title">{post.title}</span>
           <span class="row-excerpt">{post.excerpt}</span>
         </a>
