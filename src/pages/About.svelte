@@ -7,14 +7,6 @@
   const dev = import.meta.env.DEV
   const fromQuery = new URLSearchParams(location_.search).get('team')
   let layout = $state<TeamLayout>(fromQuery === 'cards' || fromQuery === 'photo' ? fromQuery : TEAM_LAYOUT)
-
-  const facts = [
-    ['Genre', 'First-person adventure with puzzle combat'],
-    ['Platform', 'PC (Steam). Others once the marsh allows'],
-    ['Players', 'Single-player'],
-    ['Status', 'In development'],
-    ['Release', 'When it’s ready, and not a full moon before'],
-  ]
 </script>
 
 <PageHero title="About" image="/images/about/hero.jpg">
@@ -38,29 +30,6 @@
     </p>
   </div>
   <Asset class="story-art" src="/images/about/world.jpg" alt="The marsh at dusk, seen from the lodge porch" ratio="4 / 5" />
-</section>
-
-<section class="facts container" aria-labelledby="facts-title">
-  <h2 id="facts-title" class="visually-hidden">Fact sheet</h2>
-  <dl>
-    {#each facts as [term, value] (term)}
-      <div>
-        <dt>{term}</dt>
-        <dd>{value}</dd>
-      </div>
-    {/each}
-  </dl>
-</section>
-
-<section class="studio container" aria-labelledby="studio-title">
-  <h2 id="studio-title">The studio</h2>
-  <div class="studio-text">
-    <p>
-      We’re {STUDIO_NAME}, a small independent team who like games that are funny right up until they aren’t. We grew up on lantern-lit
-      adventure games and wanted to make one where the tools are as strange as the monsters.
-    </p>
-    <p>We build in the open. The <a class="text-link" href="/devlog">dev blog</a> is where we share progress, dead ends, and the occasional creature that didn’t make the cut.</p>
-  </div>
 </section>
 
 <section class="team container" aria-labelledby="team-title">
@@ -107,26 +76,8 @@
     padding-block: clamp(56px, 8vw, 120px);
   }
   h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
-  .story-text p, .studio-text p { max-width: 58ch; color: var(--ink-soft); font-size: 1.075rem; }
+  .story-text p { max-width: 58ch; color: var(--ink-soft); font-size: 1.075rem; }
   .story-text h2 { margin-bottom: 28px; }
-
-  .facts dl {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    margin: 0;
-    border-block: 1px solid var(--night-line);
-  }
-  .facts dl div { padding: 24px 24px 24px 0; }
-  .facts dt { font-size: 0.9rem; font-weight: 700; color: var(--wisp); }
-  .facts dd { margin: 6px 0 0; font-family: var(--font-display); font-size: 1.4rem; line-height: 1.2; }
-
-  .studio {
-    display: grid;
-    grid-template-columns: 1fr 1.6fr;
-    gap: 24px clamp(32px, 6vw, 96px);
-    padding-block: clamp(72px, 10vw, 140px) clamp(48px, 6vw, 80px);
-  }
-  .studio-text p:first-child { margin-top: 0; }
 
   .team { padding-block: clamp(48px, 6vw, 80px) clamp(96px, 12vw, 160px); }
   .team-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -170,7 +121,7 @@
   .name { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.15; }
 
   @media (max-width: 860px) {
-    .story, .studio { grid-template-columns: 1fr; }
+    .story { grid-template-columns: 1fr; }
     .story :global(.story-art) { aspect-ratio: 16 / 10 !important; }
     .team :global(.group) { aspect-ratio: 4 / 3; }
   }
