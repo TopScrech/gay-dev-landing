@@ -67,17 +67,19 @@
     height: var(--header-h);
     padding: var(--header-safe-top) max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px));
   }
-  /* Once scrolled, a band of night with a ragged lower edge, like a strip torn from the dark */
+  /* Safari samples the fixed element's own background for the status-bar area */
+  .site-header.scrolled, .site-header.open {
+    background-color: oklch(0.12 0.03 160);
+  }
+  /* Keep the decorative mask below the header's solid background */
   .site-header::before {
     content: '';
     position: absolute;
-    /* Paint above Safari's fixed-position origin even when its safe-area inset is zero */
-    inset: -100vh 0 -12px;
+    inset: 100% 0 auto;
+    height: 12px;
     z-index: -1;
     background: oklch(0.12 0.03 160);
-    mask:
-      linear-gradient(#000, #000) top / 100% calc(100% - 12px) no-repeat,
-      url("/images/header-torn-edge.svg") left bottom / 100% 12px no-repeat;
+    mask: url("/images/header-torn-edge.svg") left top / 100% 12px no-repeat;
     opacity: 0;
     transition: opacity 0.4s var(--ease-out);
   }
