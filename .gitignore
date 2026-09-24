@@ -23,3 +23,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local stand-in art, not ours to ship
+public/images/merch.png

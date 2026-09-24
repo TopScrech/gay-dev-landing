@@ -1,7 +1,6 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
   import WishlistButton from '../components/WishlistButton.svelte'
-  import { formatDate, posts } from '../lib/posts'
   import { GAME_TITLE, LINKS, TAGLINE, TRAILER_URL } from '../lib/site'
 
   let logoFailed = $state(false)
@@ -89,22 +88,15 @@
   </div>
 </section>
 
-<section class="latest container" aria-labelledby="latest-title">
-  <div class="latest-head">
-    <h2 id="latest-title" class="section-title">From the dev blog</h2>
-    <a class="text-link" href="/devlog">Read all posts</a>
+<section class="merch container" aria-labelledby="merch-title">
+  <div class="merch-art">
+    <Asset cutout src="/images/merch.png" alt="Mirewick shirts, a lodge mug and an enamel lantern pin" ratio="1" />
   </div>
-  <ol class="post-rows">
-    {#each posts.slice(0, 3) as post (post.slug)}
-      <li>
-        <a href="/devlog/{post.slug}">
-          <span class="row-meta"><time datetime={post.date}>{formatDate(post.date)}</time></span>
-          <span class="row-title">{post.title}</span>
-          <span class="row-excerpt">{post.excerpt}</span>
-        </a>
-      </li>
-    {/each}
-  </ol>
+  <div class="merch-copy">
+    <h2 id="merch-title" class="section-title">Official {GAME_TITLE} merch</h2>
+    <p>Lodge-issue shirts, mugs and pins for anyone who has signed a contract with the marsh. See the full range in our store.</p>
+    <a class="btn btn-ghost merch-btn" href="/merch">Visit the store</a>
+  </div>
 </section>
 
 <section class="cta" aria-labelledby="cta-title">
@@ -152,7 +144,7 @@
     font-size: clamp(4rem, 14vw, 6rem);
     font-weight: 800;
     letter-spacing: 0.01em;
-    text-shadow: 0 4px 40px oklch(0.14 0.05 320 / 0.7);
+    text-shadow: 0 4px 40px oklch(0.14 0.05 160 / 0.7);
   }
   .title img { display: block; width: min(640px, 80vw); height: auto; }
   .tagline {
@@ -161,11 +153,11 @@
     font-size: clamp(1.1rem, 2vw, 1.35rem);
     font-weight: 500;
     line-height: 1.45;
-    text-shadow: 0 1px 18px oklch(0.14 0.05 320 / 0.9);
+    text-shadow: 0 1px 18px oklch(0.14 0.05 160 / 0.9);
   }
   .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
   .actions .btn { min-height: 64px; padding-inline: 26px; }
-  .hero .btn-ghost { background: oklch(0.14 0.04 310 / 0.35); }
+  .hero .btn-ghost { background: oklch(0.14 0.04 160 / 0.35); }
   .scroll-cue {
     position: absolute;
     bottom: 28px;
@@ -173,7 +165,7 @@
     width: 28px;
     height: 44px;
     margin-left: -14px;
-    border: 1.5px solid oklch(0.95 0.015 300 / 0.6);
+    border: 1.5px solid oklch(0.95 0.015 150 / 0.6);
     border-radius: 14px;
   }
   .scroll-cue::after {
@@ -210,7 +202,7 @@
     color: var(--ink-soft);
   }
 
-  .player { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: 0 40px 80px -30px oklch(0.08 0.03 305 / 0.9); }
+  .player { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: 0 40px 80px -30px oklch(0.08 0.03 160 / 0.9); }
   .player iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
   .play {
     position: absolute;
@@ -222,14 +214,14 @@
     gap: 16px;
     width: 100%;
     border: 0;
-    background: oklch(0.12 0.03 305 / 0.25);
+    background: oklch(0.12 0.03 160 / 0.25);
     color: var(--ink);
     font: 700 1rem var(--font-body);
     cursor: pointer;
     transition: background-color 0.3s;
   }
   .play:disabled { cursor: default; }
-  .play:not(:disabled):hover { background: oklch(0.12 0.03 305 / 0.1); }
+  .play:not(:disabled):hover { background: oklch(0.12 0.03 160 / 0.1); }
   .play-icon {
     display: grid;
     place-items: center;
@@ -245,7 +237,7 @@
     margin-left: 12%;
     border-style: solid;
     border-width: 14px 0 14px 24px;
-    border-color: transparent transparent transparent oklch(0.18 0.05 305);
+    border-color: transparent transparent transparent oklch(0.18 0.05 160);
   }
   .play:not(:disabled):hover .play-icon { transform: scale(1.06); }
   .play:disabled .play-icon { opacity: 0.8; }
@@ -275,22 +267,17 @@
   .gallery-grid :global(.shot-1), .gallery-grid :global(.shot-4) { grid-column: span 2; aspect-ratio: 16 / 9; }
   .gallery-grid :global(.shot-2), .gallery-grid :global(.shot-3) { height: 100%; }
 
-  .latest { padding-block: clamp(64px, 9vw, 120px) clamp(96px, 12vw, 160px); }
-  .latest-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
-  .post-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--night-line); }
-  .post-rows li { border-bottom: 1px solid var(--night-line); }
-  .post-rows a {
+  .merch {
     display: grid;
-    grid-template-columns: 13rem 1fr 1.2fr;
-    align-items: baseline;
-    gap: 8px 32px;
-    padding: 28px 0;
-    transition: padding 0.4s var(--ease-out);
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: clamp(40px, 6vw, 96px);
+    padding-block: clamp(80px, 11vw, 150px) clamp(96px, 12vw, 160px);
   }
-  .row-meta { color: var(--ink-soft); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
-  .row-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.1; }
-  .row-excerpt { color: var(--ink-soft); }
-  .post-rows a:hover .row-title { color: var(--wisp); }
+  .merch-art { width: min(100%, 560px); justify-self: center; }
+  .merch-copy { display: grid; justify-items: start; gap: 20px; }
+  .merch-copy p { max-width: 40ch; margin: 0; color: var(--ink-soft); font-size: 1.1rem; }
+  .merch-btn { min-height: 56px; padding-inline: 28px; margin-top: 8px; }
 
   .cta {
     position: relative;
@@ -317,7 +304,7 @@
   @media (max-width: 860px) {
     .feature, .feature.flip { grid-template-columns: 1fr; }
     .feature.flip :global(.asset) { order: 0; }
-    .post-rows a { grid-template-columns: 1fr; }
+    .merch { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .gallery-grid { grid-template-columns: 1fr; }

@@ -55,7 +55,7 @@
   .tags li { padding: 4px 12px; border: 1px solid var(--night-line); border-radius: 999px; font-size: 0.85rem; color: var(--ink-soft); }
   .cover { margin-block: clamp(32px, 5vw, 56px); }
   .prose { font-size: 1.125rem; line-height: 1.75; }
-  .prose p { margin: 0 0 1.4em; color: oklch(0.88 0.02 300); }
+  .prose p { margin: 0 0 1.4em; color: oklch(0.88 0.02 150); }
   .prose h2 { margin: 1.8em 0 0.6em; font-size: clamp(1.7rem, 3vw, 2.2rem); }
   .pager {
     display: flex;

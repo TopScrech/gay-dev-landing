@@ -26,7 +26,7 @@
     padding: 0 calc(var(--h) * 0.34) 0 calc(var(--h) * 0.18);
     border-radius: var(--radius);
     background: var(--wisp);
-    color: oklch(0.18 0.05 305);
+    color: oklch(0.18 0.05 160);
     line-height: 1;
     white-space: nowrap;
     transition: background-color 0.2s, box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);

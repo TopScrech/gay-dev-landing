@@ -1,9 +1,9 @@
 :root {
-  --night: oklch(0.16 0.035 305);
-  --night-raise: oklch(0.2 0.04 305);
-  --night-line: oklch(0.3 0.04 305);
-  --ink: oklch(0.95 0.015 300);
-  --ink-soft: oklch(0.8 0.03 300);
+  --night: oklch(0.16 0.035 160);
+  --night-raise: oklch(0.2 0.04 160);
+  --night-line: oklch(0.3 0.04 160);
+  --ink: oklch(0.95 0.015 150);
+  --ink-soft: oklch(0.8 0.03 150);
   --wisp: oklch(0.88 0.17 128);
   --wisp-hi: oklch(0.93 0.14 128);
   --ember: oklch(0.76 0.14 50);
@@ -69,15 +69,15 @@ p { text-wrap: pretty; }
 }
 .btn-wisp {
   background: var(--wisp);
-  color: oklch(0.18 0.05 305);
+  color: oklch(0.18 0.05 160);
 }
 .btn-wisp:hover {
   background: var(--wisp-hi);
   box-shadow: 0 0 28px oklch(0.88 0.17 128 / 0.35);
   transform: translateY(-1px);
 }
-.btn-ghost { border-color: oklch(0.95 0.015 300 / 0.5); color: var(--ink); }
-.btn-ghost:hover { border-color: var(--ink); background: oklch(0.95 0.015 300 / 0.08); }
+.btn-ghost { border-color: oklch(0.95 0.015 150 / 0.5); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink); background: oklch(0.95 0.015 150 / 0.08); }
 
 .text-link {
   font-weight: 700;

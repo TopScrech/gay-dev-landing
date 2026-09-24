@@ -8,6 +8,7 @@
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/devlog', label: 'Dev blog' },
+    { href: '/merch', label: 'Merch' },
   ]
 
   let scrolled = $state(false)
@@ -68,7 +69,7 @@
     transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
   }
   .scrolled, .open {
-    background: oklch(0.14 0.035 305 / 0.92);
+    background: oklch(0.14 0.035 160 / 0.92);
     box-shadow: 0 1px 0 var(--night-line);
     backdrop-filter: blur(10px);
   }
@@ -140,8 +141,8 @@
       align-items: stretch;
       gap: 0;
       padding: 8px var(--gutter) 24px;
-      background: oklch(0.14 0.035 305 / 0.97);
-      box-shadow: 0 1px 0 var(--night-line), 0 30px 40px oklch(0.1 0.03 305 / 0.5);
+      background: oklch(0.14 0.035 160 / 0.97);
+      box-shadow: 0 1px 0 var(--night-line), 0 30px 40px oklch(0.1 0.03 160 / 0.5);
       font-size: 1.15rem;
       clip-path: inset(0 0 100% 0);
       visibility: hidden;

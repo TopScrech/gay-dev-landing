@@ -15,6 +15,7 @@
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/devlog">Dev blog</a>
+        <a href="/merch">Merch</a>
       </div>
       <div>
         <h2>Follow</h2>
@@ -33,7 +34,7 @@
 <style>
   .site-footer {
     border-top: 1px solid var(--night-line);
-    background: oklch(0.135 0.03 305);
+    background: oklch(0.135 0.03 160);
     padding: clamp(48px, 7vw, 88px) 0 32px;
   }
   .wrap {
