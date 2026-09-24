@@ -23,7 +23,7 @@ References: firewatchgame.com (layered, parallax, illustrated landscape as the w
 ## Design Principles
 1. The world is the interface. Illustrated scenery carries the brand; UI chrome stays out of its way.
 2. Whimsy in words, dread in the air. Copy is specific and funny; the visuals keep a quiet threat.
-3. Assets will change. Every image slot has a designed fallback, so the site looks finished before the art is.
+3. Assets will change. Every image slot holds its layout with a blank block until the real art lands.
 4. Show the game, don't list it. Screenshots and scenes over feature bullets.
 
 ## Accessibility & Inclusion

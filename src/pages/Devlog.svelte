@@ -4,17 +4,16 @@
   import { formatDate, posts } from '../lib/posts'
 
   const [featured, ...rest] = posts
-  const cover = (i: number) => `/images/fallback/cover-${(i % 4) + 1}.svg`
 </script>
 
-<PageHero title="Dev blog" palette="bog" seed={5}>
+<PageHero title="Dev blog" image="/images/blog/hero.jpg">
   <p>Notes from the lodge: what we’re building, what broke, and which monsters survived the latest round of cuts.</p>
 </PageHero>
 
 <section class="devlog container" aria-label="Posts">
   <article class="featured">
     <a class="cover-link" href="/devlog/{featured.slug}" tabindex="-1" aria-hidden="true">
-      <Asset src="/images/blog/{featured.slug}.jpg" fallback={cover(0)} alt="" ratio="3 / 2" eager />
+      <Asset src="/images/blog/{featured.slug}.jpg" alt="" ratio="3 / 2" eager />
     </a>
     <div>
       <p class="meta">Devlog #{featured.number} · <time datetime={featured.date}>{formatDate(featured.date)}</time></p>
@@ -25,10 +24,10 @@
   </article>
 
   <ol class="list">
-    {#each rest as post, i (post.slug)}
+    {#each rest as post (post.slug)}
       <li>
         <a href="/devlog/{post.slug}">
-          <Asset src="/images/blog/{post.slug}.jpg" fallback={cover(i + 1)} alt="" ratio="3 / 2" />
+          <Asset src="/images/blog/{post.slug}.jpg" alt="" ratio="3 / 2" />
           <span class="body">
             <span class="meta">Devlog #{post.number} · <time datetime={post.date}>{formatDate(post.date)}</time></span>
             <span class="title">{post.title}</span>

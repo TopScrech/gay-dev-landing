@@ -1,11 +1,9 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
-  import Scene from '../components/Scene.svelte'
   import WishlistButton from '../components/WishlistButton.svelte'
   import { formatDate, posts } from '../lib/posts'
   import { GAME_TITLE, LINKS, TAGLINE, TRAILER_URL } from '../lib/site'
 
-  let keyArt = $state(false)
   let logoFailed = $state(false)
   let playing = $state(false)
 
@@ -29,9 +27,7 @@
 </script>
 
 <section class="hero">
-  <Scene parallax eyes />
-  <!-- Key art slot: public/images/key-art.jpg replaces the live scene once it exists -->
-  <img class="key-art" class:loaded={keyArt} src="/images/key-art.jpg" alt="" onload={() => (keyArt = true)} />
+  <Asset cover src="/images/key-art.jpg" alt="" />
   <div class="hero-inner">
     <h1 class="title">
       {#if logoFailed}
@@ -62,7 +58,7 @@
     {#if playing && TRAILER_URL}
       <iframe src="{TRAILER_URL}?autoplay=1" title="{GAME_TITLE} trailer" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     {:else}
-      <Asset src="/images/trailer-poster.jpg" fallback="/images/fallback/key-art.svg" alt="" ratio="16 / 9" />
+      <Asset src="/images/trailer-poster.jpg" alt="" ratio="16 / 9" />
       <button class="play" disabled={!TRAILER_URL} onclick={() => (playing = true)}>
         <span class="play-icon" aria-hidden="true"></span>
         {TRAILER_URL ? 'Play the trailer' : 'Trailer coming soon'}
@@ -75,7 +71,7 @@
   <h2 id="features-title" class="section-title">What’s in the crate</h2>
   {#each features as f, i (f.title)}
     <article class="feature" class:flip={i % 2 === 1}>
-      <Asset src="/images/screenshots/0{f.shot}.jpg" fallback="/images/fallback/shot-{f.shot}.svg" alt="Screenshot: {f.title}" ratio="16 / 10" />
+      <Asset src="/images/screenshots/0{f.shot}.jpg" alt="Screenshot: {f.title}" ratio="16 / 10" />
       <div class="feature-text">
         <h3>{f.title}</h3>
         <p>{f.text}</p>
@@ -88,7 +84,7 @@
   <h2 id="gallery-title" class="section-title">Postcards from the marsh</h2>
   <div class="gallery-grid">
     {#each [1, 2, 3, 4] as n (n)}
-      <Asset class="shot shot-{n}" src="/images/screenshots/0{n}.jpg" fallback="/images/fallback/shot-{n}.svg" alt="Screenshot {n}" />
+      <Asset class="shot shot-{n}" src="/images/screenshots/0{n}.jpg" alt="Screenshot {n}" />
     {/each}
   </div>
 </section>
@@ -112,7 +108,7 @@
 </section>
 
 <section class="cta" aria-labelledby="cta-title">
-  <Scene palette="bog" seed={21} tall={false} />
+  <Asset cover src="/images/cta.jpg" alt="" />
   <div class="cta-inner container">
     <h2 id="cta-title">The lamps go out at nine</h2>
     <p>Wishlist {GAME_TITLE} so you hear when the lodge opens, or come and argue about monsters with us on Discord.</p>
@@ -133,18 +129,7 @@
     text-align: center;
     isolation: isolate;
   }
-  .hero :global(.scene), .key-art { z-index: -2; }
-  .key-art {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.8s;
-  }
-  .key-art:not(.loaded) { visibility: hidden; }
-  .key-art.loaded { opacity: 1; }
+  .hero :global(.asset) { z-index: -2; }
   .hero::after {
     content: '';
     position: absolute;
@@ -316,7 +301,7 @@
     isolation: isolate;
     overflow: hidden;
   }
-  .cta :global(.scene) { z-index: -1; }
+  .cta :global(.asset) { z-index: -1; }
   .cta::before {
     content: '';
     position: absolute;

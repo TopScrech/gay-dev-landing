@@ -1,14 +1,14 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
-  import type { PaletteName } from '../lib/landscape'
-  import Scene from './Scene.svelte'
+  import Asset from './Asset.svelte'
 
-  type Props = { title: string; palette?: PaletteName; seed?: number; children?: Snippet }
-  let { title, palette = 'dusk', seed = 8, children }: Props = $props()
+  // `image` is the banner behind the title, e.g. /images/about/hero.jpg
+  type Props = { title: string; image: string; children?: Snippet }
+  let { title, image, children }: Props = $props()
 </script>
 
 <section class="page-hero">
-  <Scene {palette} {seed} tall={false} parallax />
+  <Asset cover src={image} alt="" />
   <div class="container inner">
     <h1>{title}</h1>
     {#if children}<div class="intro">{@render children()}</div>{/if}
@@ -24,7 +24,7 @@
     padding: calc(var(--header-h) + 48px) 0 clamp(48px, 7vw, 88px);
     isolation: isolate;
   }
-  .page-hero :global(.scene) { z-index: -1; }
+  .page-hero :global(.asset) { z-index: -1; }
   .page-hero::after {
     content: '';
     position: absolute;

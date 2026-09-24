@@ -17,7 +17,7 @@
   ]
 </script>
 
-<PageHero title="About" palette="hex" seed={14}>
+<PageHero title="About" image="/images/about/hero.jpg">
   <p>{GAME_TITLE} is a first-person monster hunt about a haunted marsh, a lodge full of strange inventions, and the person foolish enough to take the job.</p>
 </PageHero>
 
@@ -37,7 +37,7 @@
       is working on the same puzzle from the other side.
     </p>
   </div>
-  <Asset class="story-art" src="/images/about/world.jpg" fallback="/images/fallback/cover-3.svg" alt="The marsh at dusk, seen from the lodge porch" ratio="4 / 5" />
+  <Asset class="story-art" src="/images/about/world.jpg" alt="The marsh at dusk, seen from the lodge porch" ratio="4 / 5" />
 </section>
 
 <section class="facts container" aria-labelledby="facts-title">
@@ -76,9 +76,9 @@
 
   {#if layout === 'cards'}
     <ul class="cards">
-      {#each team as m, i (m.slug)}
+      {#each team as m (m.slug)}
         <li>
-          <Asset src="/images/team/{m.slug}.jpg" fallback="/images/fallback/portrait-{(i % 4) + 1}.svg" alt="Portrait of {m.name}" ratio="4 / 5" />
+          <Asset src="/images/team/{m.slug}.jpg" alt="Portrait of {m.name}" ratio="4 / 5" />
           <h3>{m.name}</h3>
           <p class="role">{m.role}</p>
           <p class="bio">{m.bio}</p>
@@ -86,7 +86,7 @@
       {/each}
     </ul>
   {:else}
-    <Asset class="group" src="/images/team/group.jpg" fallback="/images/fallback/group.svg" alt="The {STUDIO_NAME} team" />
+    <Asset class="group" src="/images/team/group.jpg" alt="The {STUDIO_NAME} team" />
     <ul class="roster">
       {#each team as m (m.slug)}
         <li>

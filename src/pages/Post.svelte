@@ -21,7 +21,7 @@
   </header>
 
   <div class="container cover">
-    <Asset src="/images/blog/{post.slug}.jpg" fallback="/images/fallback/cover-{(index % 4) + 1}.svg" alt="" ratio="21 / 9" eager />
+    <Asset src="/images/blog/{post.slug}.jpg" alt="" ratio="21 / 9" eager />
   </div>
 
   <div class="container narrow prose">
