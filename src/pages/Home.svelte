@@ -41,7 +41,6 @@
       <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
     </div>
   </div>
-  <a class="scroll-cue" href="#premise"><span class="visually-hidden">Read about the game</span></a>
 </section>
 
 <section id="premise" class="premise container">
@@ -90,7 +89,7 @@
 
 <section class="merch container" aria-labelledby="merch-title">
   <div class="merch-art">
-    <Asset cutout src="/images/merch.png" alt="Mirewick shirts, a lodge mug and an enamel lantern pin" ratio="1" />
+    <Asset cutout src="/images/merch.png" alt="Graphic shirts, a black cap, an embroidered patch and a diner mug" ratio="1" />
   </div>
   <div class="merch-copy">
     <h2 id="merch-title" class="section-title">Official {GAME_TITLE} merch</h2>
@@ -156,39 +155,12 @@
     text-shadow: 0 1px 18px oklch(0.14 0.05 160 / 0.9);
   }
   .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
-  .actions .btn-ghost {
+  .actions .btn-ghost, .merch-btn {
     --oak: oklch(0.30 0.045 58);
     --oak-edge: oklch(0.19 0.03 50);
     min-height: 64px;
     padding-inline: 36px;
   }
-  .scroll-cue {
-    position: absolute;
-    bottom: 28px;
-    left: 50%;
-    width: 28px;
-    height: 44px;
-    margin-left: -14px;
-    border: 1.5px solid oklch(0.95 0.015 150 / 0.6);
-    border-radius: 14px;
-  }
-  .scroll-cue::after {
-    content: '';
-    position: absolute;
-    top: 9px;
-    left: 50%;
-    width: 4px;
-    height: 8px;
-    margin-left: -2px;
-    border-radius: 2px;
-    background: var(--wisp);
-    animation: cue 2.2s var(--ease-out) infinite;
-  }
-  @keyframes cue {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(14px); }
-  }
-
   .premise { padding-block: clamp(72px, 11vw, 160px) clamp(48px, 7vw, 96px); }
   .lede {
     max-width: 30ch;
@@ -297,7 +269,7 @@
   .merch-art { width: min(100%, 560px); justify-self: center; }
   .merch-copy { display: grid; justify-items: start; gap: 20px; }
   .merch-copy p { max-width: 40ch; margin: 0; color: var(--ink-soft); font-size: 1.1rem; }
-  .merch-btn { min-height: 56px; padding-inline: 28px; margin-top: 8px; }
+  .merch-btn { margin-top: 8px; }
 
   .cta {
     position: relative;
@@ -332,6 +304,6 @@
     .lede-sub { margin-left: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero-inner, .scroll-cue::after { animation: none; }
+    .hero-inner { animation: none; }
   }
 </style>
