@@ -11,7 +11,7 @@ Players who follow indie games before launch: people who wishlist early, read de
 Landing site for a work-in-progress game (title still a placeholder): a whimsical first-person monster-hunting adventure with a dark streak, inventive magical tools, and frantic puzzle combat. Success is a visitor who wishlists, follows the devlog, or recognises the game's world at a glance. The site has three surfaces: home, about (ending in the team roster), and a dev blog.
 
 ## Brand Personality
-Mischievous, lantern-lit, uneasy. Whimsy lives in the copy and the tools; dread lives in the atmosphere. The tone is a storyteller who is enjoying scaring you a little.
+Mischievous, lantern-lit, uneasy, and hand-made: medieval, wooden, never perfectly straight. Surfaces are oak planks, painted signs and wax seals; edges are chipped, lines are brush strokes, and things hang slightly crooked. Whimsy lives in the copy and the tools; dread lives in the atmosphere. The tone is a storyteller who is enjoying scaring you a little.
 
 References: firewatchgame.com (layered, parallax, illustrated landscape as the whole hero; big imagery, little chrome) and dredge.game (dusky palette, something slightly wrong in the scenery, restraint). The mood leans darker.
 

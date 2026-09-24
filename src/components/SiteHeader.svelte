@@ -8,6 +8,7 @@
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/devlog', label: 'Dev blog' },
+    { href: '/merch', label: 'Merch' },
   ]
 
   let scrolled = $state(false)
@@ -48,7 +49,7 @@
 
   <nav id="site-nav" aria-label="Main">
     {#each nav as item (item.href)}
-      <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+      <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}><span>{item.label}</span></a>
     {/each}
     <WishlistButton compact />
   </nav>
@@ -65,17 +66,25 @@
     gap: 24px;
     height: var(--header-h);
     padding: 0 var(--gutter);
-    transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
   }
-  .scrolled, .open {
-    background: oklch(0.14 0.035 305 / 0.92);
-    box-shadow: 0 1px 0 var(--night-line);
-    backdrop-filter: blur(10px);
+  /* Once scrolled, a band of night with a ragged lower edge, like a strip torn from the dark */
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 -12px;
+    z-index: -1;
+    background: oklch(0.12 0.03 160 / 0.97);
+    mask:
+      linear-gradient(#000, #000) top / 100% calc(100% - 12px) no-repeat,
+      var(--torn-bottom) left bottom / 240px 12px repeat-x;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out);
   }
+  .scrolled::before, .open::before { opacity: 1; }
   .brand {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.9rem;
+    font-size: 2.1rem;
     letter-spacing: 0.01em;
     line-height: 1;
   }
@@ -84,8 +93,8 @@
     display: flex;
     align-items: center;
     gap: clamp(16px, 2.6vw, 36px);
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 700;
+    font-size: 1.05rem;
   }
   nav a:not(:global(.wishlist)) {
     position: relative;
@@ -94,18 +103,21 @@
     transition: color 0.2s;
   }
   nav a:not(:global(.wishlist)):hover, nav a[aria-current='page'] { color: var(--ink); }
-  nav a[aria-current='page']::after {
+  /* Current tab: a brush stroke exactly as wide as the label, painted on left to right */
+  nav a span { position: relative; }
+  nav a span::after {
     content: '';
     position: absolute;
-    left: 50%;
-    bottom: -4px;
-    width: 5px;
+    left: -2px;
+    right: -3px;
+    bottom: -7px;
     height: 5px;
-    margin-left: -2.5px;
-    border-radius: 50%;
     background: var(--wisp);
-    box-shadow: 0 0 8px var(--wisp);
+    mask: var(--brush) center / 100% 100% no-repeat;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.45s var(--ease-out);
   }
+  nav a[aria-current='page'] span::after { clip-path: inset(0 0 0 0); }
   .menu-toggle {
     display: none;
     width: 44px;
@@ -136,8 +148,8 @@
       align-items: stretch;
       gap: 0;
       padding: 8px var(--gutter) 24px;
-      background: oklch(0.14 0.035 305 / 0.97);
-      box-shadow: 0 1px 0 var(--night-line), 0 30px 40px oklch(0.1 0.03 305 / 0.5);
+      background: oklch(0.12 0.03 160 / 0.98);
+      box-shadow: 0 30px 40px oklch(0.1 0.03 160 / 0.5);
       font-size: 1.15rem;
       clip-path: inset(0 0 100% 0);
       visibility: hidden;
@@ -148,11 +160,14 @@
       visibility: visible;
       transition: clip-path 0.4s var(--ease-out);
     }
-    nav a:not(:global(.wishlist)) { padding: 14px 0; border-bottom: 1px solid var(--night-line); }
-    nav a[aria-current='page']::after { left: auto; right: 4px; top: 50%; bottom: auto; margin-top: -2.5px; }
+    nav a:not(:global(.wishlist)) {
+      padding: 14px 0;
+      background: linear-gradient(var(--night-line), var(--night-line)) bottom / 100% 5px no-repeat;
+      mask: linear-gradient(#000, #000) top / 100% calc(100% - 5px) no-repeat, var(--brush) bottom / 100% 5px no-repeat;
+    }
     nav :global(.wishlist) { margin-top: 20px; justify-content: center; }
   }
   @media (prefers-reduced-motion: reduce) {
-    nav, .open nav { transition: none; }
+    .site-header::before, nav, .open nav, nav a span::after { transition: none; }
   }
 </style>

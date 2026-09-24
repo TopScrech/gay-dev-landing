@@ -7,25 +7,48 @@ export const TAGLINE = 'A first-person monster hunt through a marsh that keeps o
 export const LINKS = {
   wishlist: '#',
   discord: '#',
-  bluesky: '#',
+  instagram: '#',
   presskit: '#',
 }
 
 // YouTube/Vimeo embed URL. Empty shows the poster with "Trailer coming soon"
 export const TRAILER_URL = ''
 
-// 'cards' = small portrait card per person, 'photo' = one big group photo with a roster
-// Preview either with ?team=cards or ?team=photo on /about
-export type TeamLayout = 'cards' | 'photo'
-export const TEAM_LAYOUT: TeamLayout = 'cards'
-
-export type Member = { slug: string; name: string; role: string; bio: string }
-
-// Portraits load from /images/team/<slug>.jpg, the group photo from /images/team/group.jpg
-export const team: Member[] = [
-  { slug: 'ada', name: 'Ada Placeholder', role: 'Creative direction', bio: 'Decides which monsters are allowed to be cute. Overruled weekly' },
-  { slug: 'bram', name: 'Bram Stand-in', role: 'Programming', bio: 'Wrote the physics for a kettle that screams. Would do it again' },
-  { slug: 'cleo', name: 'Cleo Temporary', role: 'Art & animation', bio: 'Paints every tree slightly crooked on purpose' },
-  { slug: 'dax', name: 'Dax Namegoeshere', role: 'Sound & music', bio: 'Recorded the Bog Choir in an actual bathtub' },
-  { slug: 'eli', name: 'Eli Tbd', role: 'Design & puzzles', bio: 'Keeps a spreadsheet of every way a hex can go wrong' },
+// Each department has a lead portrait and group photo in /images/team/<slug>/
+export const teams = [
+  {
+    slug: 'tech', name: 'Tech',
+    paragraphs: [
+      'Tech makes the strange inventions work, from the first pull of a lever to the moment a creature decides to chase you through the marsh',
+      'Behind every unruly tool is a carefully built system — and a fair amount of testing to make sure the surprises belong to the game',
+    ],
+  },
+  {
+    slug: 'design', name: 'Design',
+    paragraphs: [
+      'Design sets the traps, leaves the clues, and gives you just enough room to come up with a terrible idea that might actually work',
+      'Every hunt brings tools, creatures, and puzzles together, inviting you to watch closely, experiment, and change your plan when something starts running at you',
+    ],
+  },
+  {
+    slug: 'art', name: 'Art',
+    paragraphs: [
+      'Art gives the marsh its crooked silhouette, the lodge its cluttered warmth, and the monsters faces you might almost trust',
+      'From the smallest workshop oddity to the shapes lurking beyond the lantern light, the team balances a little charm with the feeling that something is very wrong',
+    ],
+  },
+  {
+    slug: 'audio', name: 'Audio',
+    paragraphs: [
+      'Audio fills the marsh with creaking wood, humming contraptions, and noises you would rather believe came from a very small animal',
+      'Music and sound give each hunt its rhythm, offering clues, building tension, and making the quiet moments worth listening to',
+    ],
+  },
+  {
+    slug: 'marketing', name: 'Marketing',
+    paragraphs: [
+      'Marketing opens the lodge door to the outside world, sharing glimpses of the game and introducing the peculiar things taking shape inside it',
+      'Through development stories, trailers, and conversations with players, the team helps curious newcomers find their way to the marsh — preferably before nightfall',
+    ],
+  },
 ]

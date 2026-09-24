@@ -13,7 +13,7 @@
 <article class="post">
   <header class="container narrow">
     <a class="back" href="/devlog"><span aria-hidden="true">←</span> All posts</a>
-    <p class="meta">Devlog #{post.number} · <time datetime={post.date}>{formatDate(post.date)}</time></p>
+    <p class="meta"><time datetime={post.date}>{formatDate(post.date)}</time></p>
     <h1>{post.title}</h1>
     <ul class="tags" aria-label="Tags">
       {#each post.tags as tag (tag)}<li>{tag}</li>{/each}
@@ -52,10 +52,10 @@
   .meta { margin: 32px 0 12px; color: var(--ink-soft); font-size: 0.95rem; }
   h1 { font-size: clamp(2.6rem, 7vw, 4.75rem); }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
-  .tags li { padding: 4px 12px; border: 1px solid var(--night-line); border-radius: 999px; font-size: 0.85rem; color: var(--ink-soft); }
+  .tags li { padding: 4px 12px; background: var(--night-raise); clip-path: var(--chip-c); font-size: 0.9rem; color: var(--ink-soft); }
   .cover { margin-block: clamp(32px, 5vw, 56px); }
   .prose { font-size: 1.125rem; line-height: 1.75; }
-  .prose p { margin: 0 0 1.4em; color: oklch(0.88 0.02 300); }
+  .prose p { margin: 0 0 1.4em; color: oklch(0.88 0.02 150); }
   .prose h2 { margin: 1.8em 0 0.6em; font-size: clamp(1.7rem, 3vw, 2.2rem); }
   .pager {
     display: flex;
@@ -63,7 +63,17 @@
     gap: 24px;
     margin-top: clamp(48px, 7vw, 80px);
     padding-top: 28px;
-    background: linear-gradient(var(--night-line), var(--night-line)) top center / calc(100% - 2 * var(--gutter)) 1px no-repeat;
+    position: relative;
+  }
+  .pager::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--gutter);
+    right: var(--gutter);
+    height: 5px;
+    background: var(--night-line);
+    mask: var(--brush) center / 100% 100% no-repeat;
   }
   .pager a { display: grid; gap: 4px; max-width: 48%; }
   .pager .next { text-align: right; }

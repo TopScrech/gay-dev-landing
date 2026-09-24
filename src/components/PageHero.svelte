@@ -35,14 +35,14 @@
   }
   h1 {
     font-size: clamp(3.25rem, 9vw, 6rem);
-    text-shadow: 0 2px 30px oklch(0.12 0.03 305 / 0.6);
+    text-shadow: 0 2px 30px oklch(0.12 0.03 160 / 0.6);
   }
   .intro {
     max-width: 52ch;
     margin-top: 16px;
     font-size: clamp(1.05rem, 1.6vw, 1.25rem);
     color: var(--ink);
-    text-shadow: 0 1px 16px oklch(0.12 0.03 305 / 0.9);
+    text-shadow: 0 1px 16px oklch(0.12 0.03 160 / 0.9);
   }
   .intro :global(p) { margin: 0; }
 </style>
