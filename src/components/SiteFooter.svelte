@@ -20,7 +20,7 @@
       <div>
         <h2>Follow</h2>
         <a href={LINKS.discord}>Discord</a>
-        <a href={LINKS.bluesky}>Bluesky</a>
+        <a href={LINKS.instagram}>Instagram</a>
         <a href={LINKS.presskit}>Press kit</a>
       </div>
     </nav>
@@ -32,10 +32,13 @@
 </footer>
 
 <style>
+  /* The footer drops into deeper dark along a ragged, torn edge */
   .site-footer {
-    border-top: 1px solid var(--night-line);
-    background: oklch(0.135 0.03 160);
-    padding: clamp(48px, 7vw, 88px) 0 32px;
+    background: oklch(0.12 0.03 160);
+    padding: clamp(64px, 8vw, 104px) 0 32px;
+    mask:
+      var(--torn-top) left top / 240px 14px repeat-x,
+      linear-gradient(#000, #000) left 14px / 100% calc(100% - 14px) no-repeat;
   }
   .wrap {
     display: flex;
@@ -47,15 +50,25 @@
   .sign p { max-width: 34ch; margin: 16px 0 0; color: var(--ink-soft); }
   nav { display: flex; gap: clamp(40px, 8vw, 120px); }
   nav div { display: flex; flex-direction: column; gap: 10px; }
-  h2 { margin: 0 0 6px; font-size: 0.95rem; font-weight: 700; color: var(--wisp); }
+  h2 { margin: 0 0 6px; font-size: 1.5rem; font-weight: 700; color: var(--wisp); }
   nav a { color: var(--ink-soft); }
-  nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+  nav a:hover { color: var(--ink); }
   .legal {
     margin-top: clamp(40px, 6vw, 72px);
     padding-top: 24px;
-    background: linear-gradient(var(--night-line), var(--night-line)) top center / calc(100% - 2 * var(--gutter)) 1px no-repeat;
-    font-size: 0.875rem;
+    position: relative;
+    font-size: 0.9rem;
     color: var(--ink-soft);
     gap: 12px 32px;
+  }
+  .legal::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: var(--gutter);
+    right: var(--gutter);
+    height: 5px;
+    background: var(--night-line);
+    mask: var(--brush) center / 100% 100% no-repeat;
   }
 </style>

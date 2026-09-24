@@ -55,8 +55,20 @@
   .cover-link :global(.asset) { transition: transform 0.6s var(--ease-out); }
   .cover-link:hover :global(.asset) { transform: scale(1.01); }
 
-  .list { list-style: none; margin: clamp(56px, 8vw, 104px) 0 0; padding: 0; border-top: 1px solid var(--night-line); }
-  .list li { border-bottom: 1px solid var(--night-line); }
+  .list { position: relative; list-style: none; margin: clamp(56px, 8vw, 104px) 0 0; padding: 0; }
+  .list li { position: relative; }
+  .list::before, .list li::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--night-line);
+    mask: var(--brush) center / 100% 100% no-repeat;
+  }
+  .list::before { top: -2px; bottom: auto; }
+  .list li:nth-child(even)::after { scale: -1 1; }
   .list a {
     display: grid;
     grid-template-columns: minmax(140px, 240px) 1fr;

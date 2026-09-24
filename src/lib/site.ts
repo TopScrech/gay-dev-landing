@@ -7,7 +7,7 @@ export const TAGLINE = 'A first-person monster hunt through a marsh that keeps o
 export const LINKS = {
   wishlist: '#',
   discord: '#',
-  bluesky: '#',
+  instagram: '#',
   presskit: '#',
 }
 
@@ -38,17 +38,17 @@ export const teams = [
     ],
   },
   {
-    slug: 'marketing', name: 'Marketing',
-    paragraphs: [
-      'Marketing opens the lodge door to the outside world, sharing glimpses of the game and introducing the peculiar things taking shape inside it',
-      'Through development stories, trailers, and conversations with players, the team helps curious newcomers find their way to the marsh — preferably before nightfall',
-    ],
-  },
-  {
     slug: 'audio', name: 'Audio',
     paragraphs: [
       'Audio fills the marsh with creaking wood, humming contraptions, and noises you would rather believe came from a very small animal',
       'Music and sound give each hunt its rhythm, offering clues, building tension, and making the quiet moments worth listening to',
+    ],
+  },
+  {
+    slug: 'marketing', name: 'Marketing',
+    paragraphs: [
+      'Marketing opens the lodge door to the outside world, sharing glimpses of the game and introducing the peculiar things taking shape inside it',
+      'Through development stories, trailers, and conversations with players, the team helps curious newcomers find their way to the marsh — preferably before nightfall',
     ],
   },
 ]

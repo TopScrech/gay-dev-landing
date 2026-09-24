@@ -156,8 +156,7 @@
     text-shadow: 0 1px 18px oklch(0.14 0.05 160 / 0.9);
   }
   .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
-  .actions .btn { min-height: 64px; padding-inline: 26px; }
-  .hero .btn-ghost { background: oklch(0.14 0.04 160 / 0.35); }
+  .actions .btn-ghost { min-height: 64px; padding-inline: 36px; }
   .scroll-cue {
     position: absolute;
     bottom: 28px;
@@ -202,7 +201,8 @@
     color: var(--ink-soft);
   }
 
-  .player { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: 0 40px 80px -30px oklch(0.08 0.03 160 / 0.9); }
+  .trailer { filter: drop-shadow(0 30px 40px oklch(0.08 0.03 160 / 0.8)); }
+  .player { position: relative; overflow: hidden; clip-path: var(--chip-b); }
   .player iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
   .play {
     position: absolute;
@@ -222,14 +222,21 @@
   }
   .play:disabled { cursor: default; }
   .play:not(:disabled):hover { background: oklch(0.12 0.03 160 / 0.1); }
+  /* A wax seal, pressed a little off-centre, with the play mark stamped into it */
   .play-icon {
     display: grid;
     place-items: center;
-    width: clamp(64px, 9vw, 96px);
+    width: clamp(72px, 9vw, 104px);
     aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--wisp);
-    box-shadow: 0 0 0 10px oklch(0.88 0.17 128 / 0.18), 0 0 48px oklch(0.88 0.17 128 / 0.4);
+    border-radius: 47% 53% 50% 50% / 52% 46% 54% 48%;
+    background:
+      radial-gradient(circle at 36% 30%, oklch(1 0 0 / 0.22), transparent 40%),
+      var(--wax);
+    box-shadow:
+      inset 0 0 0 clamp(6px, 0.9vw, 9px) oklch(0.44 0.15 28),
+      inset 0 0 0 clamp(7px, 1vw, 10px) oklch(0.36 0.12 28),
+      0 6px 18px oklch(0.08 0.03 30 / 0.6);
+    rotate: -8deg;
     transition: transform 0.4s var(--ease-out);
   }
   .play-icon::after {
@@ -237,9 +244,10 @@
     margin-left: 12%;
     border-style: solid;
     border-width: 14px 0 14px 24px;
-    border-color: transparent transparent transparent oklch(0.18 0.05 160);
+    border-color: transparent transparent transparent oklch(0.3 0.1 28);
+    filter: drop-shadow(0 1px 0 oklch(0.62 0.15 30));
   }
-  .play:not(:disabled):hover .play-icon { transform: scale(1.06); }
+  .play:not(:disabled):hover .play-icon { transform: scale(1.06) rotate(6deg); }
   .play:disabled .play-icon { opacity: 0.8; }
 
   .section-title { font-size: clamp(2.4rem, 5.5vw, 4rem); }
@@ -254,6 +262,9 @@
   .feature + .feature { margin-top: clamp(56px, 9vw, 120px); }
   .feature.flip { grid-template-columns: 1fr 1.35fr; }
   .feature.flip :global(.asset) { order: 2; }
+  /* Prints pinned up by hand: never quite level */
+  .feature :global(.asset) { rotate: -0.8deg; }
+  .feature.flip :global(.asset) { rotate: 0.7deg; }
   .feature h3 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
   .feature p { max-width: 42ch; margin: 18px 0 0; color: var(--ink-soft); font-size: 1.075rem; }
 
@@ -266,6 +277,10 @@
   }
   .gallery-grid :global(.shot-1), .gallery-grid :global(.shot-4) { grid-column: span 2; aspect-ratio: 16 / 9; }
   .gallery-grid :global(.shot-2), .gallery-grid :global(.shot-3) { height: 100%; }
+  .gallery-grid :global(.shot-1) { rotate: -0.6deg; }
+  .gallery-grid :global(.shot-2) { rotate: 1deg; }
+  .gallery-grid :global(.shot-3) { rotate: -1.1deg; }
+  .gallery-grid :global(.shot-4) { rotate: 0.5deg; }
 
   .merch {
     display: grid;
