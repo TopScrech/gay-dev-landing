@@ -6,9 +6,9 @@
 
   const nav = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/devlog', label: 'Dev blog' },
     { href: '/merch', label: 'Merch' },
+    { href: '/devlog', label: 'Dev blog' },
+    { href: '/about', label: 'About' },
   ]
 
   let scrolled = $state(false)
