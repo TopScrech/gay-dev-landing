@@ -71,9 +71,10 @@
   .site-header::before {
     content: '';
     position: absolute;
-    inset: 0 0 -12px;
+    /* Paint above Safari's fixed-position origin even when its safe-area inset is zero */
+    inset: -100vh 0 -12px;
     z-index: -1;
-    background: oklch(0.12 0.03 160 / 0.97);
+    background: oklch(0.12 0.03 160);
     mask:
       linear-gradient(#000, #000) top / 100% calc(100% - 12px) no-repeat,
       url("/images/header-torn-edge.svg") left bottom / 100% 12px no-repeat;
