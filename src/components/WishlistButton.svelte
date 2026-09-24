@@ -17,9 +17,13 @@
 </a>
 
 <style>
-  /* A painted sign on the global plank (.btn .btn-wisp); only the size is set here */
+  /* Dark green paint on the global plank */
   .wishlist {
+    --wisp: oklch(0.36 0.08 150);
+    --wisp-hi: oklch(0.42 0.09 150);
+    --oak-edge: oklch(0.23 0.05 150);
     --h: 64px;
+    color: var(--parchment-ink);
     gap: calc(var(--h) * 0.2);
     height: var(--h);
     min-height: 0;

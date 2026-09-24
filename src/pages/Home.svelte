@@ -156,7 +156,12 @@
     text-shadow: 0 1px 18px oklch(0.14 0.05 160 / 0.9);
   }
   .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
-  .actions .btn-ghost { min-height: 64px; padding-inline: 36px; }
+  .actions .btn-ghost {
+    --oak: oklch(0.30 0.045 58);
+    --oak-edge: oklch(0.19 0.03 50);
+    min-height: 64px;
+    padding-inline: 36px;
+  }
   .scroll-cue {
     position: absolute;
     bottom: 28px;
