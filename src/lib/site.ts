@@ -1,6 +1,6 @@
 // Placeholder title: change it here and it updates everywhere
 export const GAME_TITLE = 'Mirewick'
-export const STUDIO_NAME = 'gay.dev'
+export const STUDIO_NAME = 'Moonberry Games'
 export const TAGLINE = 'A first-person monster hunt through a marsh that keeps odd hours'
 
 // Swap '#' for real URLs when they exist
@@ -8,6 +8,7 @@ export const LINKS = {
   wishlist: '#',
   discord: '#',
   instagram: '#',
+  tiktok: '#',
   presskit: '#',
 }
 
