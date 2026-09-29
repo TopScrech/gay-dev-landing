@@ -19,7 +19,6 @@
       </div>
       <div>
         <h2>Follow</h2>
-        <a href={LINKS.discord}>Discord</a>
         <a href={LINKS.instagram}>Instagram</a>
         <a href={LINKS.tiktok}>TikTok</a>
         <a href={LINKS.presskit}>Press kit</a>
