@@ -7,8 +7,8 @@ export const TAGLINE = 'A first-person monster hunt through a marsh that keeps o
 export const LINKS = {
   wishlist: '#',
   discord: '#',
-  instagram: '#',
-  tiktok: '#',
+  instagram: 'https://instagram.com/moonberry.games',
+  tiktok: 'https://tiktok.com/@moonberrygames',
   presskit: '#',
 }
 
