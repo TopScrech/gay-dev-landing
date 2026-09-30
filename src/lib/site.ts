@@ -1,5 +1,5 @@
 // Placeholder title: change it here and it updates everywhere
-export const GAME_TITLE = 'Mirewick'
+export const GAME_TITLE = 'game_title'
 export const STUDIO_NAME = 'Moonberry Games'
 export const TAGLINE = 'A first-person monster hunt through a marsh that keeps odd hours'
 

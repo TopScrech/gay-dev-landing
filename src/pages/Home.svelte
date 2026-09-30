@@ -143,7 +143,7 @@
     font-size: clamp(4rem, 14vw, 6rem);
     font-weight: 800;
     letter-spacing: 0.01em;
-    text-shadow: 0 4px 40px oklch(0.14 0.05 160 / 0.7);
+    text-shadow: 0 4px 40px oklch(from var(--night-deep) l c h / 0.7);
   }
   .title img { display: block; width: min(640px, 80vw); height: auto; }
   .tagline {
@@ -152,12 +152,12 @@
     font-size: clamp(1.1rem, 2vw, 1.35rem);
     font-weight: 500;
     line-height: 1.45;
-    text-shadow: 0 1px 18px oklch(0.14 0.05 160 / 0.9);
+    text-shadow: 0 1px 18px oklch(from var(--night-deep) l c h / 0.9);
   }
   .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
   .actions .btn-ghost, .merch-btn {
-    --oak: oklch(0.30 0.045 58);
-    --oak-edge: oklch(0.19 0.03 50);
+    --oak: oklch(0.38 0.09 295);
+    --oak-edge: oklch(0.2 0.05 288);
     min-height: 64px;
     padding-inline: 36px;
   }
@@ -178,7 +178,7 @@
     color: var(--ink-soft);
   }
 
-  .trailer { filter: drop-shadow(0 30px 40px oklch(0.08 0.03 160 / 0.8)); }
+  .trailer { filter: drop-shadow(0 30px 40px oklch(0.08 0.03 280 / 0.8)); }
   .player { position: relative; overflow: hidden; clip-path: var(--chip-b); }
   .player iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
   .play {
@@ -191,14 +191,14 @@
     gap: 16px;
     width: 100%;
     border: 0;
-    background: oklch(0.12 0.03 160 / 0.25);
+    background: oklch(from var(--night-deep) l c h / 0.25);
     color: var(--ink);
     font: 700 1rem var(--font-body);
     cursor: pointer;
     transition: background-color 0.3s;
   }
   .play:disabled { cursor: default; }
-  .play:not(:disabled):hover { background: oklch(0.12 0.03 160 / 0.1); }
+  .play:not(:disabled):hover { background: oklch(from var(--night-deep) l c h / 0.1); }
   /* A wax seal, pressed a little off-centre, with the play mark stamped into it */
   .play-icon {
     display: grid;

@@ -17,11 +17,11 @@
 </a>
 
 <style>
-  /* Dark green paint on the global plank */
+  /* Lake-teal paint on the global plank, from the dark cyan of the game palette */
   .wishlist {
-    --wisp: oklch(0.36 0.08 150);
-    --wisp-hi: oklch(0.42 0.09 150);
-    --oak-edge: oklch(0.23 0.05 150);
+    --wisp: oklch(0.45 0.08 215);
+    --wisp-hi: oklch(0.51 0.09 215);
+    --oak-edge: oklch(0.26 0.05 225);
     --h: 64px;
     color: var(--parchment-ink);
     gap: calc(var(--h) * 0.2);

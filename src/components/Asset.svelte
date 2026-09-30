@@ -55,7 +55,7 @@
     left: 10px;
     bottom: 10px;
     padding: 4px 8px;
-    background: oklch(0.12 0.03 160 / 0.8);
+    background: oklch(from var(--night-deep) l c h / 0.8);
     color: var(--ink-soft);
     font: 500 11px/1.3 ui-monospace, monospace;
     pointer-events: none;

@@ -1,25 +1,30 @@
 :root {
-  --night: oklch(0.16 0.035 160);
-  --night-raise: oklch(0.2 0.04 160);
-  --night-line: oklch(0.3 0.04 160);
-  --ink: oklch(0.95 0.015 150);
-  --ink-soft: oklch(0.8 0.03 150);
+  /* Night: midnight violet and twilight indigo, framed by deep forest green */
+  --night: oklch(0.2 0.065 285);
+  --night-raise: oklch(0.25 0.075 280);
+  --night-line: oklch(0.33 0.07 275);
+  --night-deep: oklch(0.14 0.035 180);
+  --glow-grape: oklch(0.42 0.14 300);
+  --glow-indigo: oklch(0.36 0.12 265);
+  --glow-cyan: oklch(0.45 0.08 195);
+  --ink: oklch(0.95 0.015 300);
+  --ink-soft: oklch(0.82 0.035 290);
   --wisp: oklch(0.88 0.17 128);
   --wisp-hi: oklch(0.93 0.14 128);
   --ember: oklch(0.76 0.14 50);
   --wax: oklch(0.5 0.16 28);
 
-  /* Wood: bare oak for planks, stained oak for beams and the footer board */
-  --oak: oklch(0.44 0.065 58);
-  --oak-hi: oklch(0.5 0.07 62);
-  --oak-edge: oklch(0.26 0.045 50);
-  --oak-stain: oklch(0.21 0.03 55);
-  --iron: oklch(0.2 0.012 60);
+  /* Wood planks painted dusty grape to sit in the night palette; the grain still shows through */
+  --oak: oklch(0.42 0.08 295);
+  --oak-hi: oklch(0.48 0.09 295);
+  --oak-edge: oklch(0.25 0.06 290);
+  --oak-stain: oklch(0.21 0.04 290);
+  --iron: oklch(0.2 0.02 285);
   --parchment-ink: oklch(0.94 0.03 85);
 
   /* Hand-made textures, all drawn in code: fine grain, long wood grain, a brush stroke */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --woodgrain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='160'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.19' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.04 0 0 0 0 0.01 0 0 0 -1.5 0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
+  --woodgrain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='160'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.19' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.03 0 0 0 0 0.1 0 0 0 -1.5 0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
   --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3.1C18 1.9 40 2.4 62 2.1S112 1.5 138 2.2 182 2.4 200 1.7L199 3.6C170 4.7 146 3.9 118 4.4S66 5.1 38 4.4 10 4.9 1 4.2Z'/%3E%3C/svg%3E");
   /* Torn edges, tiled sideways: solid below (--torn-top) or above (--torn-bottom) a ragged line */
   --torn-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14'%3E%3Cpath d='M0 14V7L9 5L17 8L26 4L38 6L47 3L55 7L66 5L74 9L85 6L97 7L104 3L116 5L125 8L137 4L149 6L158 2L169 6L180 5L188 8L199 4L211 6L222 3L231 7L240 7V14Z'/%3E%3C/svg%3E");
@@ -54,7 +59,19 @@
 
 * { box-sizing: border-box; }
 html { scroll-padding-top: calc(var(--header-h) + 16px); }
-body { margin: 0; min-width: 320px; background: var(--night); }
+body { margin: 0; min-width: 320px; }
+/* Lake-at-night glows: grape and indigo overhead, teal water below, pinned to the viewport */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(55% 45% at 90% 10%, oklch(from var(--glow-grape) l c h / 0.5), transparent),
+    radial-gradient(50% 40% at 10% 30%, oklch(from var(--glow-indigo) l c h / 0.45), transparent),
+    radial-gradient(70% 45% at 30% 100%, oklch(from var(--glow-cyan) l c h / 0.4), transparent);
+  pointer-events: none;
+}
 /* Keep the grain below navigation so it cannot obscure Safari's header color sampling */
 body::after {
   content: '';
@@ -103,7 +120,7 @@ p { text-wrap: pretty; }
   color: var(--parchment-ink);
   font: 700 1.05rem/1 var(--font-body);
   letter-spacing: 0.02em;
-  text-shadow: 0 1px 0 oklch(0.15 0.03 50 / 0.7);
+  text-shadow: 0 1px 0 oklch(0.15 0.04 290 / 0.7);
   cursor: pointer;
   transform: rotate(var(--tilt));
   transition: transform 0.35s var(--ease-out);

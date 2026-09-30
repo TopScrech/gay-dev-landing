@@ -69,7 +69,7 @@
   }
   /* Safari samples the fixed element's own background for the status-bar area */
   .site-header.scrolled, .site-header.open {
-    background-color: oklch(0.12 0.03 160);
+    background-color: var(--night-deep);
   }
   /* Keep the decorative mask below the header's solid background */
   .site-header::before {
@@ -78,7 +78,7 @@
     inset: 100% 0 auto;
     height: 12px;
     z-index: -1;
-    background: oklch(0.12 0.03 160);
+    background: var(--night-deep);
     mask: url("/images/header-torn-edge.svg") left top / 100% 12px no-repeat;
     opacity: 0;
     transition: opacity 0.4s var(--ease-out);
@@ -144,7 +144,7 @@
 
   @media (max-width: 760px) {
     /* Expose a solid header on first paint, before Safari samples its top edge */
-    .site-header { background-color: oklch(0.12 0.03 160); }
+    .site-header { background-color: var(--night-deep); }
     .site-header::before { opacity: 1; }
     .menu-toggle { display: block; }
     nav {
@@ -154,8 +154,8 @@
       align-items: stretch;
       gap: 0;
       padding: 8px var(--gutter) 24px;
-      background: oklch(0.12 0.03 160 / 0.98);
-      box-shadow: 0 30px 40px oklch(0.1 0.03 160 / 0.5);
+      background: oklch(from var(--night-deep) l c h / 0.98);
+      box-shadow: 0 30px 40px oklch(from var(--night-deep) l c h / 0.5);
       font-size: 1.15rem;
       clip-path: inset(0 0 100% 0);
       visibility: hidden;

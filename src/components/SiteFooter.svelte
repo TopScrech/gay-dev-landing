@@ -34,7 +34,7 @@
 <style>
   /* The footer drops into deeper dark along a ragged, torn edge */
   .site-footer {
-    background: oklch(0.12 0.03 160);
+    background: var(--night-deep);
     padding: clamp(64px, 8vw, 104px) 0 32px;
     mask:
       var(--torn-top) left top / 240px 14px repeat-x,
