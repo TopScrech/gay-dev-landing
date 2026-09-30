@@ -1,23 +1,23 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
   import PageHero from '../components/PageHero.svelte'
-  import { GAME_TITLE, teams } from '../lib/site'
+  import { GAME_TITLE, PRODUCT_OWNER, STUDIO_NAME, teams } from '../lib/site'
 </script>
 
 <PageHero title="About" image="/images/about/hero.jpg">
   <p>{GAME_TITLE} is a first-person monster hunt about a haunted marsh, a lodge full of strange inventions, and the person foolish enough to take the job.</p>
 </PageHero>
 
-<section class="game-intro container" aria-labelledby="game-title">
-  <h2 id="game-title">A strange place to make a living</h2>
+<section class="game-intro container" aria-labelledby="studio-title">
+  <h2 id="studio-title">Meet {STUDIO_NAME}</h2>
   <div class="intro-text">
     <p>
-      {GAME_TITLE} is a whimsical first-person adventure with a dark streak, where monster hunting is as much about curiosity as courage
-      — explore a haunted marsh, take on unusual contracts, and find a use for the lodge’s collection of inventive magical tools
+      We are {STUDIO_NAME}. We started in 2026 and are currently based at Hanze University of Applied Sciences, studying CMGT. We are
+      currently developing our new product, and you can follow our progress through our biweekly blog posts.
     </p>
     <p>
-      Each creature is a puzzle in motion, with habits to learn and weaknesses to uncover — watch closely, experiment with your equipment,
-      and think on your feet when a carefully laid plan turns into a frantic scramble through the reeds
+      Our goal is to listen to feedback and continuously improve the quality of our work, making sure everyone who uses our products has
+      a pleasant experience.
     </p>
   </div>
 </section>
@@ -34,7 +34,10 @@
       room to experiment while keeping the monster hunts, inventive tools, and playful sense of unease at the heart of the game
     </p>
   </div>
-  <Asset class="owner-portrait" src="/images/team/product-owner.jpg" alt="Portrait of the product owner" ratio="4 / 5" />
+  <figure class="owner-portrait">
+    <Asset src="/images/team/product-owner.jpg" alt="Portrait of {PRODUCT_OWNER.name}, {PRODUCT_OWNER.role}" ratio="4 / 5" />
+    <figcaption><span class="name">{PRODUCT_OWNER.name}</span> {PRODUCT_OWNER.role}</figcaption>
+  </figure>
 </section>
 
 <section class="team container" aria-labelledby="team-title">
@@ -50,8 +53,8 @@
         </div>
         <div class="team-photos">
           <figure class="lead">
-            <Asset src="/images/team/{team.slug}/lead.jpg" alt="{team.name} team lead" ratio="4 / 5" />
-            <figcaption>Team lead</figcaption>
+            <Asset src="/images/team/{team.slug}/lead.jpg" alt="Portrait of {team.lead.name}, {team.lead.role}" ratio="4 / 5" />
+            <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
           </figure>
           <figure class="group">
             <Asset src="/images/team/{team.slug}/group.jpg" alt="The {team.name} team together" ratio="16 / 10" />
@@ -74,7 +77,7 @@
   .game-intro { padding-top: clamp(56px, 8vw, 120px); }
   .game-intro h2 { margin-bottom: 28px; }
   .intro-text { max-width: 72ch; color: var(--ink-soft); font-size: 1.075rem; }
-  .owner :global(.owner-portrait) { width: 100%; max-width: 400px; justify-self: center; }
+  .owner-portrait { width: 100%; max-width: 400px; justify-self: center; }
   h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
   .owner-text p { max-width: 58ch; color: var(--ink-soft); font-size: 1.075rem; }
   .owner-text h2 { margin-bottom: 28px; }
@@ -100,7 +103,8 @@
   .team-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
   figure { margin: 0; min-width: 0; }
   figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--ink-soft); }
-  .lead figcaption { color: var(--wisp); }
+  figcaption .name { display: block; font-family: var(--font-display); font-size: 1.6rem; line-height: 1.1; color: var(--ink); }
+  .lead figcaption, .owner-portrait figcaption { color: var(--wisp); }
 
   @media (max-width: 860px) {
     .owner { grid-template-columns: 1fr; }
