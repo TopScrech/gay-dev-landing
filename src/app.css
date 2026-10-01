@@ -141,6 +141,8 @@ p { text-wrap: pretty; }
     linear-gradient(oklch(1 0 0 / 0.12), transparent 30%, transparent 70%, oklch(0 0 0 / 0.22)),
     var(--woodgrain) 0 0 / 600px 160px,
     var(--oak);
+  /* Multiply the grain into the paint, or it washes out on the darker planks */
+  background-blend-mode: normal, normal, normal, multiply, normal;
 }
 .btn::after {
   z-index: -2;
