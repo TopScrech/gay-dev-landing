@@ -10,6 +10,7 @@ export const LINKS = {
   instagram: 'https://instagram.com/moonberry.games',
   tiktok: 'https://tiktok.com/@moonberrygames',
   presskit: '#',
+  hosting: 'https://crunchy.host',
 }
 
 // YouTube/Vimeo embed URL. Empty shows the poster with "Trailer coming soon"

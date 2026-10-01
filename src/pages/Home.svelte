@@ -1,7 +1,7 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
   import WishlistButton from '../components/WishlistButton.svelte'
-  import { GAME_TITLE, LINKS, TAGLINE, TRAILER_URL } from '../lib/site'
+  import { GAME_TITLE, TAGLINE, TRAILER_URL } from '../lib/site'
 
   let logoFailed = $state(false)
   let playing = $state(false)
@@ -102,10 +102,10 @@
   <Asset cover src="/images/cta.jpg" alt="" />
   <div class="cta-inner container">
     <h2 id="cta-title">The lamps go out at nine</h2>
-    <p>Wishlist {GAME_TITLE} so you hear when the lodge opens, or come and argue about monsters with us on Discord.</p>
+    <p>Wishlist {GAME_TITLE} so you hear when the lodge opens, or watch the trailer and see what waits in the marsh.</p>
     <div class="actions">
       <WishlistButton />
-      <a class="btn btn-ghost" href={LINKS.discord}>Join the Discord</a>
+      <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
     </div>
   </div>
 </section>

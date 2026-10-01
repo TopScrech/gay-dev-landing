@@ -27,7 +27,7 @@
   </div>
   <div class="container wrap legal">
     <span>© {year} {STUDIO_NAME}</span>
-    <span>No monsters were harmed. Several were inconvenienced</span>
+    <span>Powered by <a class="host" href={LINKS.hosting} target="_blank" rel="noopener">Crunchy.Host<svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="crunchy-logo" x1="16" y1="4" x2="46" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE08A" /><stop offset="0.5" stop-color="#F5AF19" /><stop offset="1" stop-color="#F06B50" /></linearGradient></defs><path fill="url(#crunchy-logo)" d="M59 7L38 24L24 22L17 33L26 44L39 40L57 48L36 60L13 50L3 29L18 9L35 4L29 14Z" /></svg></a></span>
   </div>
 </footer>
 
@@ -52,7 +52,7 @@
   nav div { display: flex; flex-direction: column; gap: 10px; }
   h2 { margin: 0 0 6px; font-size: 1.5rem; font-weight: 700; color: var(--wisp); }
   nav a { color: var(--ink-soft); }
-  nav a:hover { color: var(--ink); }
+  nav a:hover, .legal a:hover { color: var(--ink); }
   .legal {
     margin-top: clamp(40px, 6vw, 72px);
     padding-top: 24px;
@@ -61,6 +61,8 @@
     color: var(--ink-soft);
     gap: 12px 32px;
   }
+  .host { display: inline-flex; align-items: center; gap: 6px; }
+  .host svg { width: 1.1em; height: 1.1em; }
   .legal::before {
     content: '';
     position: absolute;
