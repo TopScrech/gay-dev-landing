@@ -19,7 +19,7 @@ export const TRAILER_URL = ''
 // Product owner shown above the teams on the About page
 export const PRODUCT_OWNER = { name: 'Alex', role: 'Product Owner' }
 
-// Each department has a lead portrait and group photo in /images/team/<slug>/
+// Each department has a Discord lead avatar and group photo in /images/team/<slug>/
 export const teams = [
   {
     slug: 'tech', name: 'Tech',
@@ -39,7 +39,7 @@ export const teams = [
   },
   {
     slug: 'art', name: 'Art',
-    lead: { name: 'Lisette', role: 'Lead Artist' },
+    lead: { name: 'Lizet', role: 'Lead Artist' },
     paragraphs: [
       'Art gives the marsh its crooked silhouette, the lodge its cluttered warmth, and the monsters faces you might almost trust',
       'From the smallest workshop oddity to the shapes lurking beyond the lantern light, the team balances a little charm with the feeling that something is very wrong',

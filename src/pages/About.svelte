@@ -35,7 +35,7 @@
     </p>
   </div>
   <figure class="owner-portrait">
-    <Asset src="/images/team/product-owner.jpg" alt="Portrait of {PRODUCT_OWNER.name}, {PRODUCT_OWNER.role}" ratio="4 / 5" />
+    <Asset src="/images/team/product-owner.png" alt="Discord avatar of {PRODUCT_OWNER.name}, {PRODUCT_OWNER.role}" ratio="1 / 1" />
     <figcaption><span class="name">{PRODUCT_OWNER.name}</span> {PRODUCT_OWNER.role}</figcaption>
   </figure>
 </section>
@@ -53,11 +53,11 @@
         </div>
         <div class="team-photos">
           <figure class="lead">
-            <Asset src="/images/team/{team.slug}/lead.jpg" alt="Portrait of {team.lead.name}, {team.lead.role}" ratio="4 / 5" />
+            <Asset src="/images/team/{team.slug}/lead.png" alt="Discord avatar of {team.lead.name}, {team.lead.role}" ratio="1 / 1" />
             <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
           </figure>
           <figure class="group">
-            <Asset src="/images/team/{team.slug}/group.jpg" alt="The {team.name} team together" ratio="16 / 10" />
+            <Asset src="/images/team/{team.slug}/group.jpg" alt="The {team.name} team together" ratio="var(--group-photo-ratio)" />
             <figcaption>The {team.name} team</figcaption>
           </figure>
         </div>
@@ -101,6 +101,7 @@
   .team-description p { margin: 0; }
   .team-description p + p { margin-top: 1em; }
   .team-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
+  .group { --group-photo-ratio: 2 / 1; }
   figure { margin: 0; min-width: 0; }
   figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--ink-soft); }
   figcaption .name { display: block; font-family: var(--font-display); font-size: 1.6rem; line-height: 1.1; color: var(--ink); }
@@ -112,5 +113,6 @@
   @media (max-width: 540px) {
     .team-photos { grid-template-columns: 1fr; gap: 24px; }
     .lead { width: 60%; }
+    .group { --group-photo-ratio: 5 / 3; }
   }
 </style>
