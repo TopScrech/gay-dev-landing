@@ -57,7 +57,7 @@
             <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
           </figure>
           <figure class="group">
-            <Asset src="/images/team/{team.slug}/group.jpg" alt="The {team.name} team together" ratio="var(--group-photo-ratio)" />
+            <Asset src="/images/team/{team.slug}/group-photo.jpg" alt="The {team.name} team together" ratio="var(--group-photo-ratio)" />
             <figcaption>The {team.name} team</figcaption>
           </figure>
         </div>
