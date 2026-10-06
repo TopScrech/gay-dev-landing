@@ -14,7 +14,7 @@ export type Post = {
   tags?: string[]
   // Thumbnail on the dev blog list
   cover: string
-  // Strings are paragraphs: lines starting with '## ' render as subheadings, [text](url) as links
+  // Strings are paragraphs: '## ' starts a subheading, '- ' lines make a list, [text](url) is a link
   // Figures render one or more images side by side
   body: (string | Figure)[]
 }
@@ -24,46 +24,51 @@ export const posts: Post[] = [
   {
     slug: 'laying-the-foundations',
     number: 1,
-    title: 'Laying the foundations',
+    title: 'The Foundations',
     date: '2026-10-06',
-    excerpt: 'Weeks 1 & 2: we set up the studio, split into teams, and took our game from paper to a first playable prototype.',
+    excerpt: 'Laying the groundwork in a whimsical forest: how our studio built its first playable prototype in just two weeks.',
     cover: '/images/blog/devblog-1/creature-concept.webp',
     body: [
-      'Welcome to the very first Moonberry Games dev blog! We didn’t just spend the last two weeks building our studio from the ground up — we also took the idea for our upcoming game off the paper and turned it into a first playable prototype.',
-      'Follow along for a look behind the scenes of our magical forest.',
+      'Welcome to Moonberry Games’ very first DevBlog! Over the past two weeks, we’ve been building our studio from the ground up to take our upcoming game from an idea on paper to our first playable prototype!',
+      'Follow along for a look behind the scenes in our whimsical forest.',
       '## Moonberry’s vision',
-      'Long story short: we’re building a fantasy puzzle game with investigation and action elements, which should soon be playable on platforms like Steam.',
-      'You step into the role of a grumpy veteran. A cheeky gnome has burned down your hut, and as if that weren’t enough, it also swiped your belongings and vanished into the forest. You’re basically back to square one. The villagers are kind enough to help you out with tips and tools — but they expect something in return: help with their own monstrous problems.',
+      'Long story short: we are building a fantasy-puzzle game with investigative and action elements, which we plan to bring to platforms like Steam in the near future!',
+      'Step into the boots of a grumpy veteran. A mischievous gnome just burned down your cabin and, as if that wasn’t enough, snatched your belongings before disappearing into the forest. You’re back at square one. Luckily, the local villagers are friendly enough to help you out with tips and tools, although they do expect a favor or two in return to deal with their own monstrous problems in and around the village.',
       {
         images: [{ src: '/images/blog/devblog-1/veteran-concept.png', alt: 'Sketch of the veteran: a broad-shouldered man with brown hair and stubble, hands on hips', ratio: '651 / 955' }],
-        caption: 'A peek at the concept art for our veteran',
+        caption: 'Our grumpy veteran',
       },
-      'Ronnie, our Design Lead, describes the core concept like this:',
-      '“The flow has two parts. First, you pick up a quest in the village and use your tools like a detective to find clues and track down the creature. Once you know what’s lurking out there, you suddenly have to use those same tools in a completely different way — as combat mechanics, to outsmart the beast.”',
-      '## Where we are right now',
-      'To keep from getting in each other’s way, we used the first weeks to define roles and form departments.',
-      'Team Village looks after the place where our story unfolds. This is also where Team Cabin turns ordinary houses into magical huts. The first layouts for our village are done, and more than one house already has something living in it.',
-      'Team Player gives our hero a personality, while Teams Tool 1 & 2 are already equipping players with the means to take investigations in the forest to a whole new level. What these tools will ultimately do during an investigation is something our veteran will have to find out.',
+      'As our Game Design Lead Ronnie describes it, the game flow consists of two parts. First, you grab a quest in the village and use your tools like a detective to uncover clues and track down the creature. Once you know what’s lurking out there, you suddenly have to use those exact same tools in a completely different way. Use them as combat mechanics to outsmart the beasts.',
+      '## Where we stand right now',
+      'To make our prototype run so quickly, everyone in the studio dove straight into building the essentials. Our world is already taking shape and the early outlines of the village are in place. Magical huts are being built and the first few inhabitants are already moving into their new homes.',
       {
-        images: [{ src: '/images/blog/devblog-1/lantern.png', alt: 'Two black lanterns with purple glass roofs, one dark and one glowing warm yellow', ratio: '954 / 717' }],
-        caption: 'One of the tools taking shape',
+        images: [{ src: '/images/blog/devblog-1/village-layout.png', alt: 'Hand-drawn village map with a river, houses, a church, fields, a village centre, a private training area and the main character’s house', ratio: '640 / 574' }],
+        caption: 'Our village is taking shape',
       },
-      'We didn’t want to leave out the inhabitants of the forest either, so we’ve already made progress on concepts and first iterations for villagers and other creatures.',
+      'But they are not the only ones new to the forest: our veteran hero is learning to walk in these woods again and is busy testing prototype tools that serve multiple purposes. Whether it’s helping the residents solve the mysteries of the forest or defending himself against what lurks within, our hero is getting ready to do it all.',
+      {
+        images: [
+          { src: '/images/blog/devblog-1/lantern.png', alt: 'Two black lanterns with purple glass roofs, one dark and one glowing warm yellow', ratio: '954 / 717' },
+          { src: '/images/blog/devblog-1/creature-concept.webp', alt: 'Animated greyscale painting of a tentacled object with a single eye', ratio: '961 / 1021' },
+        ],
+        caption: 'Tools of various purpose',
+      },
+      'And with good reason, as the first creatures are already roaming deep among the trees.',
       {
         images: [
           { src: '/images/blog/devblog-1/spider-sketches.png', alt: 'Sketches of spider creatures with button-covered bodies, notes reading “fatter”, “skinny” and “fluffy”, and a curly web', ratio: '816 / 567' },
-          { src: '/images/blog/devblog-1/creature-concept.webp', alt: 'Animated greyscale painting of a tentacled creature with a single eye', ratio: '961 / 1021' },
+          { src: '/images/blog/devblog-1/villager-concept.jpg', alt: 'Painted villager: a grey-haired old woman with round glasses, a green cloak over a purple robe, and a large wooden spoon as a staff', ratio: '3 / 4' },
         ],
-        caption: 'Early creature concepts',
+        caption: 'Some friendly, some unfriendly creatures',
       },
-      'The Sound Department has made its first strides too, turning our forest into an experience for the ears.',
-      'After just two weeks, the whole team has already put together a first playable prototype. You can find out more about our team on our [About page](/about).',
+      'If you want to learn more about the team behind the game, check out our [About Us](/about) page!',
       '## Website & socials are live!',
-      `To grow Moonberry Games’ online presence, our Marketing Department has already put words into action. Find us on [Instagram](${LINKS.instagram}) and [TikTok](${LINKS.tiktok}).`,
-      '## Where are we headed?',
-      'We’ll spend the next two weeks polishing our prototype and making the experience more immersive. Our features should tie together more closely and give the player a real goal.',
-      'Join us on our journey through the magical forest, and check out our socials so you don’t miss any updates!',
-      'Your Moonberry Games',
+      'Beyond the development, our marketing team has already set up social media accounts so that you can follow our journey and look into upcoming behind-the-scenes content:',
+      `- Instagram: [instagram.com/moonberry.games](${LINKS.instagram})\n- TikTok: [tiktok.com/@moonberrygames](${LINKS.tiktok})`,
+      '## What’s next?',
+      'With the foundation in place, the next two weeks are all about polishing to make the overall player experience more immersive. Our goal is to connect our core features more seamlessly and give the player a clear, rewarding objective.',
+      'Check out our socials and stay tuned for upcoming updates!',
+      '– Your Moonberry Games Team',
     ],
   },
 ]

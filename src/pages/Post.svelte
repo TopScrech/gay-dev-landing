@@ -13,6 +13,14 @@
   const aspect = (ratio: string) => ratio.split('/').map(Number).reduce((w, h) => w / h)
 </script>
 
+{#snippet text(source: string)}
+  {#each inline(source) as part, j (j)}
+    {#if part.href}
+      <a href={part.href} target={part.href.startsWith('http') ? '_blank' : undefined} rel={part.href.startsWith('http') ? 'noopener' : undefined}>{part.text}</a>
+    {:else}{part.text}{/if}
+  {/each}
+{/snippet}
+
 <article class="post">
   <header class="container narrow">
     <a class="back" href="/devlog"><span aria-hidden="true">←</span> All posts</a>
@@ -38,14 +46,12 @@
         </figure>
       {:else if block.startsWith('## ')}
         <h2>{block.slice(3)}</h2>
+      {:else if block.startsWith('- ')}
+        <ul>
+          {#each block.split('\n') as item, j (j)}<li>{@render text(item.slice(2))}</li>{/each}
+        </ul>
       {:else}
-        <p>
-          {#each inline(block) as part, j (j)}
-            {#if part.href}
-              <a href={part.href} target={part.href.startsWith('http') ? '_blank' : undefined} rel={part.href.startsWith('http') ? 'noopener' : undefined}>{part.text}</a>
-            {:else}{part.text}{/if}
-          {/each}
-        </p>
+        <p>{@render text(block)}</p>
       {/if}
     {/each}
   </div>
@@ -71,6 +77,7 @@
   .tags li { padding: 4px 12px; background: var(--night-raise); clip-path: var(--chip-c); font-size: 0.9rem; color: var(--ink-soft); }
   .prose { margin-top: clamp(40px, 6vw, 64px); font-size: 1.125rem; line-height: 1.75; }
   .prose p { margin: 0 0 1.4em; color: oklch(0.88 0.025 295); }
+  .prose ul { margin: 0 0 1.4em; padding-left: 1.4em; color: oklch(0.88 0.025 295); }
   .prose a { color: var(--wisp); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
   figure { margin: 2.2em 0; }
   .images { display: flex; justify-content: center; align-items: center; gap: 16px; }
