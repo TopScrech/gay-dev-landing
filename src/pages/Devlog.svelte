@@ -13,7 +13,7 @@
 <section class="devlog container" aria-label="Posts">
   <article class="featured">
     <a class="cover-link" href="/devlog/{featured.slug}" tabindex="-1" aria-hidden="true">
-      <Asset src="/images/blog/{featured.slug}.jpg" alt="" ratio="3 / 2" eager />
+      <Asset src={featured.cover} alt="" ratio="3 / 2" eager />
     </a>
     <div>
       <p class="meta"><time datetime={featured.date}>{formatDate(featured.date)}</time></p>
@@ -23,20 +23,22 @@
     </div>
   </article>
 
-  <ol class="list">
-    {#each rest as post (post.slug)}
-      <li>
-        <a href="/devlog/{post.slug}">
-          <Asset src="/images/blog/{post.slug}.jpg" alt="" ratio="3 / 2" />
-          <span class="body">
-            <span class="meta"><time datetime={post.date}>{formatDate(post.date)}</time></span>
-            <span class="title">{post.title}</span>
-            <span class="excerpt">{post.excerpt}</span>
-          </span>
-        </a>
-      </li>
-    {/each}
-  </ol>
+  {#if rest.length}
+    <ol class="list">
+      {#each rest as post (post.slug)}
+        <li>
+          <a href="/devlog/{post.slug}">
+            <Asset src={post.cover} alt="" ratio="3 / 2" />
+            <span class="body">
+              <span class="meta"><time datetime={post.date}>{formatDate(post.date)}</time></span>
+              <span class="title">{post.title}</span>
+              <span class="excerpt">{post.excerpt}</span>
+            </span>
+          </a>
+        </li>
+      {/each}
+    </ol>
+  {/if}
 </section>
 
 <style>
