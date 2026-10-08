@@ -11,11 +11,14 @@
     </div>
     <nav aria-label="Footer">
       <div>
-        <h2>Explore</h2>
-        <a href="/">Home</a>
+        <h2>Games</h2>
         {#each games as game (game.href)}
           <a href={game.href}>{game.title}</a>
         {/each}
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/devlog">Dev blog</a>
         <a href="/merch">Merch</a>
@@ -51,7 +54,7 @@
   }
   .brand { font-family: var(--font-display); font-weight: 800; font-size: 2.4rem; line-height: 1; }
   .sign p { max-width: 34ch; margin: 16px 0 0; color: var(--ink-soft); }
-  nav { display: flex; gap: clamp(40px, 8vw, 120px); }
+  nav { display: flex; flex-wrap: wrap; gap: 32px clamp(40px, 8vw, 120px); }
   nav div { display: flex; flex-direction: column; gap: 10px; }
   h2 { margin: 0 0 6px; font-size: 1.5rem; font-weight: 700; color: var(--wisp); }
   nav a { color: var(--ink-soft); }
