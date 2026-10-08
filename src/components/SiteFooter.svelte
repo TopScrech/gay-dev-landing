@@ -1,18 +1,21 @@
 <script lang="ts">
-  import { GAME_TITLE, LINKS, STUDIO_NAME } from '../lib/site'
+  import { LINKS, STUDIO_NAME, games } from '../lib/site'
   const year = new Date().getFullYear()
 </script>
 
 <footer class="site-footer">
   <div class="container wrap">
     <div class="sign">
-      <a class="brand" href="/">{GAME_TITLE}</a>
-      <p>In development for PC. Title, art, and everything else subject to change by the marsh.</p>
+      <a class="brand" href="/">{STUDIO_NAME}</a>
+      <p>An indie studio making whimsical games with a dark streak.</p>
     </div>
     <nav aria-label="Footer">
       <div>
         <h2>Explore</h2>
         <a href="/">Home</a>
+        {#each games as game (game.href)}
+          <a href={game.href}>{game.title}</a>
+        {/each}
         <a href="/about">About</a>
         <a href="/devlog">Dev blog</a>
         <a href="/merch">Merch</a>

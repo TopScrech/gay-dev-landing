@@ -12,7 +12,7 @@
   </svg>
   <span class="words" aria-hidden="true">
     <span class="top">Wishlist on</span>
-    <span class="brand">STEAM<sup>™</sup></span>
+    <span class="brand">STEAM</span>
   </span>
 </a>
 
@@ -49,12 +49,6 @@
     font-size: calc(var(--h) * 0.37);
     font-weight: 900;
     letter-spacing: 0.12em;
-  }
-  sup {
-    margin-left: -0.1em;
-    font-size: 0.32em;
-    letter-spacing: 0;
-    vertical-align: 1.5em;
   }
   @media (prefers-reduced-motion: reduce) {
     .mark { transition: none; }

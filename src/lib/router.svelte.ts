@@ -1,8 +1,10 @@
 import { tick } from 'svelte'
 import { posts } from './posts'
+import { games } from './site'
 
 export type Route =
   | { page: 'home' }
+  | { page: 'game' }
   | { page: 'about' }
   | { page: 'devlog' }
   | { page: 'merch' }
@@ -15,6 +17,7 @@ export const location_ = $state({ path: normalize(location.pathname), search: lo
 
 export function resolve(path: string): Route {
   if (path === '/') return { page: 'home' }
+  if (games.some((g) => g.href === path)) return { page: 'game' }
   if (path === '/about') return { page: 'about' }
   if (path === '/devlog') return { page: 'devlog' }
   if (path === '/merch') return { page: 'merch' }

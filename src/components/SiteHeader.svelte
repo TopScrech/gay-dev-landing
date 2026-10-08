@@ -1,11 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { location_ } from '../lib/router.svelte'
-  import { GAME_TITLE } from '../lib/site'
-  import WishlistButton from './WishlistButton.svelte'
+  import { STUDIO_NAME, games } from '../lib/site'
 
   const nav = [
-    { href: '/', label: 'Home' },
     { href: '/merch', label: 'Merch' },
     { href: '/devlog', label: 'Dev blog' },
     { href: '/about', label: 'About' },
@@ -13,13 +11,15 @@
 
   let scrolled = $state(false)
   let open = $state(false)
-  let logoFailed = $state(false)
+  let gamesOpen = $state(false)
+  let gamesMenu: HTMLElement
 
   const isCurrent = (href: string) => (href === '/' ? location_.path === '/' : location_.path.startsWith(href))
 
   $effect(() => {
     location_.path
     open = false
+    gamesOpen = false
   })
 
   onMount(() => {
@@ -30,17 +30,13 @@
   })
 </script>
 
-<svelte:window onkeydown={(e) => e.key === 'Escape' && (open = false)} />
+<svelte:window
+  onkeydown={(e) => e.key === 'Escape' && (open = gamesOpen = false)}
+  onclick={(e) => gamesOpen && !gamesMenu.contains(e.target as Node) && (gamesOpen = false)}
+/>
 
 <header class="site-header" class:scrolled class:open>
-  <a class="brand" href="/" aria-label="{GAME_TITLE} home">
-    {#if logoFailed}
-      {GAME_TITLE}
-    {:else}
-      <!-- Logo slot: public/images/logo.svg -->
-      <img src="/images/logo.svg" alt="" onerror={() => (logoFailed = true)} />
-    {/if}
-  </a>
+  <a class="brand" href="/" aria-label="{STUDIO_NAME} home">{STUDIO_NAME}</a>
 
   <button class="menu-toggle" aria-expanded={open} aria-controls="site-nav" onclick={() => (open = !open)}>
     <span class="bars" aria-hidden="true"><i></i><i></i></span>
@@ -48,10 +44,21 @@
   </button>
 
   <nav id="site-nav" aria-label="Main">
+    <a href="/" aria-current={isCurrent('/') ? 'page' : undefined}><span>Home</span></a>
+    <div class="dropdown" class:expanded={gamesOpen} bind:this={gamesMenu}>
+      <button class="dropdown-toggle" class:current={isCurrent('/games')} aria-expanded={gamesOpen} aria-controls="games-menu" onclick={() => (gamesOpen = !gamesOpen)}>
+        <span>Games</span>
+        <svg class="caret" viewBox="0 0 12 8" aria-hidden="true"><path d="M1.5 1.5 6 6l4.5-4.5" /></svg>
+      </button>
+      <ul id="games-menu" class="dropdown-menu">
+        {#each games as game (game.href)}
+          <li><a href={game.href} aria-current={isCurrent(game.href) ? 'page' : undefined}><span>{game.title}</span></a></li>
+        {/each}
+      </ul>
+    </div>
     {#each nav as item (item.href)}
       <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}><span>{item.label}</span></a>
     {/each}
-    <WishlistButton compact />
   </nav>
 </header>
 
@@ -91,7 +98,6 @@
     letter-spacing: 0.01em;
     line-height: 1;
   }
-  .brand img { display: block; height: 40px; width: auto; }
   nav {
     display: flex;
     align-items: center;
@@ -99,16 +105,16 @@
     font-weight: 700;
     font-size: 1.05rem;
   }
-  nav a:not(:global(.wishlist)) {
+  nav a {
     position: relative;
     padding: 6px 0;
     color: var(--ink-soft);
     transition: color 0.2s;
   }
-  nav a:not(:global(.wishlist)):hover, nav a[aria-current='page'] { color: var(--ink); }
+  nav a:hover, nav a[aria-current='page'] { color: var(--ink); }
   /* Current tab: a brush stroke exactly as wide as the label, painted on left to right */
-  nav a span { position: relative; }
-  nav a span::after {
+  nav a span, .dropdown-toggle span { position: relative; }
+  nav a span::after, .dropdown-toggle span::after {
     content: '';
     position: absolute;
     left: -2px;
@@ -120,7 +126,67 @@
     clip-path: inset(0 100% 0 0);
     transition: clip-path 0.45s var(--ease-out);
   }
-  nav a[aria-current='page'] span::after { clip-path: inset(0 0 0 0); }
+  nav a[aria-current='page'] span::after, .dropdown-toggle.current span::after { clip-path: inset(0 0 0 0); }
+  .dropdown { position: relative; }
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .dropdown-toggle:hover, .dropdown-toggle.current, .expanded .dropdown-toggle { color: var(--ink); }
+  .caret {
+    width: 11px;
+    height: 8px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s var(--ease-out);
+  }
+  .expanded .caret { transform: rotate(180deg); }
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: -18px;
+    min-width: 200px;
+    margin: 0;
+    padding: 10px 18px;
+    list-style: none;
+    background: var(--night-deep);
+    border-radius: 6px;
+    box-shadow: 0 20px 40px oklch(from var(--night-deep) l c h / 0.6);
+    opacity: 0;
+    translate: 0 -6px;
+    visibility: hidden;
+    transition: opacity 0.2s, translate 0.25s var(--ease-out), visibility 0s 0.25s;
+  }
+  .expanded .dropdown-menu {
+    opacity: 1;
+    translate: 0;
+    visibility: visible;
+    transition: opacity 0.2s, translate 0.25s var(--ease-out);
+  }
+  .dropdown-menu a { display: block; white-space: nowrap; }
+  /* Open on hover for pointer devices; the gap above the menu is bridged so it stays open */
+  @media (hover: hover) and (min-width: 761px) {
+    .dropdown-menu::before { content: ''; position: absolute; inset: -12px 0 100%; }
+    .dropdown:hover .dropdown-toggle { color: var(--ink); }
+    .dropdown:hover .caret { transform: rotate(180deg); }
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      translate: 0;
+      visibility: visible;
+      transition: opacity 0.2s, translate 0.25s var(--ease-out);
+    }
+  }
   .menu-toggle {
     display: none;
     width: 44px;
@@ -166,14 +232,33 @@
       visibility: visible;
       transition: clip-path 0.4s var(--ease-out);
     }
-    nav a:not(:global(.wishlist)) {
+    nav a {
       padding: 14px 0;
       background: linear-gradient(var(--night-line), var(--night-line)) bottom / 100% 5px no-repeat;
       mask: linear-gradient(#000, #000) top / 100% calc(100% - 5px) no-repeat, var(--brush) bottom / 100% 5px no-repeat;
     }
-    nav :global(.wishlist) { margin-top: 20px; justify-content: center; }
+    .dropdown-toggle {
+      width: 100%;
+      justify-content: space-between;
+      padding: 14px 0;
+      background: linear-gradient(var(--night-line), var(--night-line)) bottom / 100% 5px no-repeat;
+      mask: linear-gradient(#000, #000) top / 100% calc(100% - 5px) no-repeat, var(--brush) bottom / 100% 5px no-repeat;
+    }
+    /* The submenu opens inline inside the mobile sheet */
+    .dropdown-menu {
+      position: static;
+      display: none;
+      min-width: 0;
+      padding: 0 0 0 20px;
+      background: none;
+      box-shadow: none;
+      opacity: 1;
+      translate: 0;
+      visibility: visible;
+    }
+    .expanded .dropdown-menu { display: block; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .site-header::before, nav, .open nav, nav a span::after { transition: none; }
+    .site-header::before, nav, .open nav, nav a span::after, .dropdown-toggle span::after, .caret, .dropdown-menu { transition: none; }
   }
 </style>

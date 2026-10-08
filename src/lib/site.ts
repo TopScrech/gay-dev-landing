@@ -1,6 +1,7 @@
-// Placeholder title: change it here and it updates everywhere
-export const GAME_TITLE = 'game_title'
 export const STUDIO_NAME = 'Moonberry Games'
+
+// Placeholder game title: change it here and it updates everywhere
+export const GAME_TITLE = 'game_title'
 export const TAGLINE = 'A first-person monster hunt through a marsh that keeps odd hours'
 
 // Swap '#' for real URLs when they exist
@@ -12,6 +13,9 @@ export const LINKS = {
   presskit: '#',
   hosting: 'https://crunchy.host',
 }
+
+// Listed under the Games dropdown in the header
+export const games = [{ title: GAME_TITLE, href: '/games/untitled' }]
 
 // YouTube/Vimeo embed URL. Empty shows the poster with "Trailer coming soon"
 export const TRAILER_URL = ''
