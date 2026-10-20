@@ -23,7 +23,6 @@
 
 <svelte:document onclick={interceptLinks} />
 
-<a class="skip-link" href="#main">Skip to content</a>
 <SiteHeader />
 
 <main id="main" tabindex="-1">
