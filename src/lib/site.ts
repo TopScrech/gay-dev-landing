@@ -23,7 +23,7 @@ export const TRAILER_URL = ''
 // Product owner shown above the teams on the About page
 export const PRODUCT_OWNER = { name: 'Alex', role: 'Product Owner' }
 
-// Each department has a Discord lead avatar and group photo in /images/team/<slug>/
+// Each department has a lead portrait or Discord avatar and group photo in /images/team/<slug>/
 export const teams = [
   {
     slug: 'tech', name: 'Tech',
@@ -35,7 +35,7 @@ export const teams = [
   },
   {
     slug: 'design', name: 'Design',
-    lead: { name: 'Ronnie', role: 'Lead Designer' },
+    lead: { name: 'Ronnie', role: 'Lead Designer', portrait: '/images/team/design/lead.webp' },
     paragraphs: [
       'Design sets the traps, leaves the clues, and gives you just enough room to come up with a terrible idea that might actually work',
       'Every hunt brings tools, creatures, and puzzles together, inviting you to watch closely, experiment, and change your plan when something starts running at you',
@@ -51,7 +51,7 @@ export const teams = [
   },
   {
     slug: 'audio', name: 'Audio',
-    lead: { name: 'Alex Monster', role: 'Lead Audio Design' },
+    lead: { name: 'Alex Monster', role: 'Lead Audio Design', portrait: '/images/team/audio/lead.webp' },
     paragraphs: [
       'Audio fills the marsh with creaking wood, humming contraptions, and noises you would rather believe came from a very small animal',
       'Music and sound give each hunt its rhythm, offering clues, building tension, and making the quiet moments worth listening to',
@@ -59,7 +59,7 @@ export const teams = [
   },
   {
     slug: 'marketing', name: 'Marketing',
-    lead: { name: 'Padouk de Bie', role: 'Lead Marketing' },
+    lead: { name: 'Padouk de Bie', role: 'Lead Marketing', portrait: '/images/team/marketing/lead.webp' },
     paragraphs: [
       'Marketing opens the lodge door to the outside world, sharing glimpses of the game and introducing the peculiar things taking shape inside it',
       'Through development stories, trailers, and conversations with players, the team helps curious newcomers find their way to the marsh — preferably before nightfall',

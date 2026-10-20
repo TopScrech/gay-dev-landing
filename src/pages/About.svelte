@@ -53,7 +53,11 @@
         </div>
         <div class="team-photos">
           <figure class="lead">
-            <Asset src="/images/team/{team.slug}/lead.png" alt="Discord avatar of {team.lead.name}, {team.lead.role}" ratio="1 / 1" />
+            <Asset
+              src={team.lead.portrait ?? `/images/team/${team.slug}/lead.png`}
+              alt="{team.lead.portrait ? 'Portrait' : 'Discord avatar'} of {team.lead.name}, {team.lead.role}"
+              ratio="3 / 4"
+            />
             <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
           </figure>
           <figure class="group">
@@ -101,7 +105,8 @@
   .team-description p { margin: 0; }
   .team-description p + p { margin-top: 1em; }
   .team-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
-  .group { --group-photo-ratio: 2 / 1; }
+  /* Twice the lead width needs twice its aspect ratio to keep the same height */
+  .group { --group-photo-ratio: 3 / 2; }
   figure { margin: 0; min-width: 0; }
   figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--ink-soft); }
   figcaption .name { display: block; font-family: var(--font-display); font-size: 1.6rem; line-height: 1.1; color: var(--ink); }
@@ -113,6 +118,6 @@
   @media (max-width: 540px) {
     .team-photos { grid-template-columns: 1fr; gap: 24px; }
     .lead { width: 60%; }
-    .group { --group-photo-ratio: 5 / 3; }
+    .group { --group-photo-ratio: 5 / 4; }
   }
 </style>
