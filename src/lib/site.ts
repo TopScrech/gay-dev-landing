@@ -1,8 +1,8 @@
 export const STUDIO_NAME = 'Moonberry Games'
 
 // Placeholder game title: change it here and it updates everywhere
-export const GAME_TITLE = 'game_title'
-export const TAGLINE = 'A first-person monster hunt through a marsh that keeps odd hours'
+export const GAME_TITLE = 'Ravenshall'
+export const TAGLINE = 'Explore a rich and vibrant world as you investigate and exterminate mythical creatures to keep your home town safe'
 
 // Swap '#' for real URLs when they exist
 export const LINKS = {
