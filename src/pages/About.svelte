@@ -26,7 +26,7 @@
   <div class="owner-text">
     <h2 id="owner-title">The product owner</h2>
     <p>
-      Keeping a lodge full of strange ideas pointed in the same direction is a job of its own — the product owner looks after the vision
+      Keeping a lodge full of strange ideas pointed in the same direction is a job of its own - the product owner looks after the vision
       for {GAME_TITLE}, helping the teams turn that vision into an adventure that feels like one connected world
     </p>
     <p>

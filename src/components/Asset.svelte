@@ -1,12 +1,10 @@
 <script lang="ts">
   // An image slot: shows `src` once the file exists in public/, a blank block until then.
-  // In dev, blank slots are tagged with the path the real asset should live at
   // `cutout` is for transparent PNGs: no panel behind the image once it loads
   type Props = { src: string; alt: string; ratio?: string; eager?: boolean; cover?: boolean; cutout?: boolean; class?: string }
   let { src, alt, ratio, eager = false, cover = false, cutout = false, class: className = '' }: Props = $props()
 
   let failed = $state(false)
-  const dev = import.meta.env.DEV
 
   // Each print gets one of three chipped outlines, picked from its path so it stays put between renders
   const chip = $derived(['a', 'b', 'c'][[...src].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 3])
@@ -15,8 +13,6 @@
 <div class="asset {className}" class:cover class:cutout={cutout && !failed} class:blank={failed} style:aspect-ratio={ratio} style:--chip="var(--chip-{chip})">
   {#if !failed}
     <img {src} {alt} loading={eager || cover ? 'eager' : 'lazy'} decoding="async" onerror={() => (failed = true)} />
-  {:else if dev}
-    <span class="asset-tag" aria-hidden="true">public{src}</span>
   {/if}
 </div>
 
@@ -50,15 +46,4 @@
     height: 100%;
     object-fit: cover;
   }
-  .asset-tag {
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    padding: 4px 8px;
-    background: oklch(from var(--night-deep) l c h / 0.8);
-    color: var(--ink-soft);
-    font: 500 11px/1.3 ui-monospace, monospace;
-    pointer-events: none;
-  }
-  .cover .asset-tag { left: auto; right: 16px; bottom: 16px; }
 </style>

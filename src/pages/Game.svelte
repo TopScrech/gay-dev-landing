@@ -1,10 +1,11 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
+  import MerchSection from '../components/MerchSection.svelte'
+  import TrailerPlayer from '../components/TrailerPlayer.svelte'
   import WishlistButton from '../components/WishlistButton.svelte'
-  import { GAME_TITLE, STUDIO_NAME, TAGLINE, TRAILER_URL } from '../lib/site'
+  import { GAME_TITLE, STUDIO_NAME, TAGLINE } from '../lib/site'
 
   let logoFailed = $state(false)
-  let playing = $state(false)
 
   const features = [
     {
@@ -41,6 +42,7 @@
       <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
     </div>
   </div>
+  <p class="credit">A game by <a href="/">{STUDIO_NAME}</a></p>
 </section>
 
 <section id="premise" class="premise container">
@@ -52,17 +54,7 @@
 </section>
 
 <section id="trailer" class="trailer container" aria-label="Trailer">
-  <div class="player">
-    {#if playing && TRAILER_URL}
-      <iframe src="{TRAILER_URL}?autoplay=1" title="{GAME_TITLE} trailer" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-    {:else}
-      <Asset src="/images/trailer-poster.jpg" alt="" ratio="16 / 9" />
-      <button class="play" disabled={!TRAILER_URL} onclick={() => (playing = true)}>
-        <span class="play-icon" aria-hidden="true"></span>
-        {TRAILER_URL ? 'Play the trailer' : 'Trailer coming soon'}
-      </button>
-    {/if}
-  </div>
+  <TrailerPlayer />
 </section>
 
 <section class="features container" aria-labelledby="features-title">
@@ -87,16 +79,7 @@
   </div>
 </section>
 
-<section class="merch container" aria-labelledby="merch-title">
-  <div class="merch-art">
-    <Asset cutout src="/images/merch.png" alt="Graphic shirts, a black cap, an embroidered patch and a diner mug" ratio="1" />
-  </div>
-  <div class="merch-copy">
-    <h2 id="merch-title" class="section-title">Official {STUDIO_NAME} merch</h2>
-    <p>Lodge-issue shirts, mugs and pins for anyone who has signed a contract with the marsh. See the full range in our store.</p>
-    <a class="btn btn-ghost merch-btn" href="/merch">Visit the store</a>
-  </div>
-</section>
+<MerchSection />
 
 <section class="cta" aria-labelledby="cta-title">
   <Asset cover src="/images/cta.jpg" alt="" />
@@ -155,7 +138,7 @@
     text-shadow: 0 1px 18px oklch(from var(--night-deep) l c h / 0.9);
   }
   .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 8px; }
-  .actions .btn-ghost, .merch-btn {
+  .actions .btn-ghost {
     --oak: oklch(0.38 0.09 295);
     --oak-edge: oklch(0.2 0.05 288);
     min-height: 64px;
@@ -177,55 +160,6 @@
     font-size: clamp(1.05rem, 1.5vw, 1.2rem);
     color: var(--ink-soft);
   }
-
-  .trailer { filter: drop-shadow(0 30px 40px oklch(0.08 0.03 280 / 0.8)); }
-  .player { position: relative; overflow: hidden; clip-path: var(--chip-b); }
-  .player iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
-  .play {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    width: 100%;
-    border: 0;
-    background: oklch(from var(--night-deep) l c h / 0.25);
-    color: var(--ink);
-    font: 700 1rem var(--font-body);
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .play:disabled { cursor: default; }
-  .play:not(:disabled):hover { background: oklch(from var(--night-deep) l c h / 0.1); }
-  /* A wax seal, pressed a little off-centre, with the play mark stamped into it */
-  .play-icon {
-    display: grid;
-    place-items: center;
-    width: clamp(72px, 9vw, 104px);
-    aspect-ratio: 1;
-    border-radius: 47% 53% 50% 50% / 52% 46% 54% 48%;
-    background:
-      radial-gradient(circle at 36% 30%, oklch(1 0 0 / 0.22), transparent 40%),
-      var(--wax);
-    box-shadow:
-      inset 0 0 0 clamp(6px, 0.9vw, 9px) oklch(0.44 0.15 28),
-      inset 0 0 0 clamp(7px, 1vw, 10px) oklch(0.36 0.12 28),
-      0 6px 18px oklch(0.08 0.03 30 / 0.6);
-    rotate: -8deg;
-    transition: transform 0.4s var(--ease-out);
-  }
-  .play-icon::after {
-    content: '';
-    margin-left: 12%;
-    border-style: solid;
-    border-width: 14px 0 14px 24px;
-    border-color: transparent transparent transparent oklch(0.3 0.1 28);
-    filter: drop-shadow(0 1px 0 oklch(0.62 0.15 30));
-  }
-  .play:not(:disabled):hover .play-icon { transform: scale(1.06) rotate(6deg); }
-  .play:disabled .play-icon { opacity: 0.8; }
 
   .section-title { font-size: clamp(2.4rem, 5.5vw, 4rem); }
   .features { padding-block: clamp(96px, 13vw, 180px) clamp(48px, 6vw, 80px); }
@@ -259,18 +193,6 @@
   .gallery-grid :global(.shot-3) { rotate: -1.1deg; }
   .gallery-grid :global(.shot-4) { rotate: 0.5deg; }
 
-  .merch {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: clamp(40px, 6vw, 96px);
-    padding-block: clamp(80px, 11vw, 150px) clamp(96px, 12vw, 160px);
-  }
-  .merch-art { width: min(100%, 560px); justify-self: center; }
-  .merch-copy { display: grid; justify-items: start; gap: 20px; }
-  .merch-copy p { max-width: 40ch; margin: 0; color: var(--ink-soft); font-size: 1.1rem; }
-  .merch-btn { margin-top: 8px; }
-
   .cta {
     position: relative;
     display: flex;
@@ -293,10 +215,27 @@
   .cta h2 { font-size: clamp(2.4rem, 6vw, 4.5rem); }
   .cta p { max-width: 46ch; margin: 0; font-size: 1.1rem; }
 
+  .credit {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: clamp(20px, 4vh, 40px);
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    text-shadow: 0 1px 12px oklch(from var(--night-deep) l c h / 0.95);
+  }
+  .credit a {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+  .credit a:hover { color: var(--wisp); }
+
   @media (max-width: 860px) {
     .feature, .feature.flip { grid-template-columns: 1fr; }
     .feature.flip :global(.asset) { order: 0; }
-    .merch { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .gallery-grid { grid-template-columns: 1fr; }

@@ -30,7 +30,7 @@ export const teams = [
     lead: { name: 'Pavlos', role: 'Lead Developer' },
     paragraphs: [
       'Tech makes the strange inventions work, from the first pull of a lever to the moment a creature decides to chase you through the marsh',
-      'Behind every unruly tool is a carefully built system — and a fair amount of testing to make sure the surprises belong to the game',
+      'Behind every unruly tool is a carefully built system - and a fair amount of testing to make sure the surprises belong to the game',
     ],
   },
   {
@@ -62,7 +62,7 @@ export const teams = [
     lead: { name: 'Padouk de Bie', role: 'Lead Marketing', portrait: padoukPortrait },
     paragraphs: [
       'Marketing opens the lodge door to the outside world, sharing glimpses of the game and introducing the peculiar things taking shape inside it',
-      'Through development stories, trailers, and conversations with players, the team helps curious newcomers find their way to the marsh — preferably before nightfall',
+      'Through development stories, trailers, and conversations with players, the team helps curious newcomers find their way to the marsh - preferably before nightfall',
     ],
   },
 ]
