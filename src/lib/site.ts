@@ -23,7 +23,7 @@ export const TRAILER_URL = ''
 // Product owner shown above the teams on the About page
 export const PRODUCT_OWNER = { name: 'Alex', role: 'Product Owner' }
 
-// Each department has a lead portrait or Discord avatar and group photo in /images/team/<slug>/
+// Each department has a lead portrait or Discord avatar in /images/team/<slug>/
 export const teams = [
   {
     slug: 'tech', name: 'Tech',

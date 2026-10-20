@@ -45,26 +45,22 @@
   <div class="teams">
     {#each teams as team (team.slug)}
       <section class="department" aria-labelledby="team-{team.slug}">
-        <h3 id="team-{team.slug}">{team.name}</h3>
-        <div class="team-description">
-          {#each team.paragraphs as paragraph (paragraph)}
-            <p>{paragraph}</p>
-          {/each}
+        <div class="department-text">
+          <h3 id="team-{team.slug}">{team.name}</h3>
+          <div class="team-description">
+            {#each team.paragraphs as paragraph (paragraph)}
+              <p>{paragraph}</p>
+            {/each}
+          </div>
         </div>
-        <div class="team-photos">
-          <figure class="lead">
-            <Asset
-              src={team.lead.portrait ?? `/images/team/${team.slug}/lead.png`}
-              alt="{team.lead.portrait ? 'Portrait' : 'Discord avatar'} of {team.lead.name}, {team.lead.role}"
-              ratio="3 / 4"
-            />
-            <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
-          </figure>
-          <figure class="group">
-            <Asset src="/images/team/{team.slug}/group-photo.jpg" alt="The {team.name} team together" ratio="var(--group-photo-ratio)" />
-            <figcaption>The {team.name} team</figcaption>
-          </figure>
-        </div>
+        <figure class="lead">
+          <Asset
+            src={team.lead.portrait ?? `/images/team/${team.slug}/lead.png`}
+            alt="{team.lead.portrait ? 'Portrait' : 'Discord avatar'} of {team.lead.name}, {team.lead.role}"
+            ratio="3 / 4"
+          />
+          <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
+        </figure>
       </section>
     {/each}
   </div>
@@ -89,7 +85,17 @@
   .team { padding-block: clamp(48px, 6vw, 80px) clamp(96px, 12vw, 160px); }
   .team > h2 { margin-bottom: clamp(28px, 4vw, 48px); }
   .teams { display: grid; gap: clamp(48px, 7vw, 88px); }
-  .department { position: relative; padding-top: 28px; }
+  .department {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+    gap: clamp(32px, 6vw, 96px);
+    align-items: center;
+    padding-top: clamp(28px, 4vw, 48px);
+  }
+  /* Alternate the portrait side so the stack of teams reads as a zigzag */
+  .department:nth-child(even) { grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); }
+  .department:nth-child(even) .lead { order: -1; }
   .department::before {
     content: '';
     position: absolute;
@@ -101,12 +107,9 @@
     mask: var(--brush) center / 100% 100% no-repeat;
   }
   .department h3 { margin: 0 0 24px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
-  .team-description { max-width: 65ch; margin-bottom: clamp(24px, 3vw, 40px); color: var(--ink-soft); font-size: 1.075rem; }
+  .team-description { max-width: 60ch; color: var(--ink-soft); font-size: 1.075rem; }
   .team-description p { margin: 0; }
   .team-description p + p { margin-top: 1em; }
-  .team-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
-  /* Twice the lead width needs twice its aspect ratio to keep the same height */
-  .group { --group-photo-ratio: 3 / 2; }
   figure { margin: 0; min-width: 0; }
   figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--ink-soft); }
   figcaption .name { display: block; font-family: var(--font-display); font-size: 1.6rem; line-height: 1.1; color: var(--ink); }
@@ -114,10 +117,11 @@
 
   @media (max-width: 860px) {
     .owner { grid-template-columns: 1fr; }
+    .department, .department:nth-child(even) { grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; }
+    .department:nth-child(even) .lead { order: 0; }
   }
   @media (max-width: 540px) {
-    .team-photos { grid-template-columns: 1fr; gap: 24px; }
-    .lead { width: 60%; }
-    .group { --group-photo-ratio: 5 / 4; }
+    .department, .department:nth-child(even) { grid-template-columns: 1fr; gap: 24px; }
+    .lead { width: 60%; max-width: 260px; }
   }
 </style>
