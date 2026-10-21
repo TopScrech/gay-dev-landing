@@ -2,9 +2,13 @@ FROM oven/bun:1.4.2 AS build
 WORKDIR /app
 
 COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
+RUN --mount=type=cache,id=gay-dev-landing-bun,target=/root/.bun/install/cache \
+    BUN_INSTALL_CACHE_DIR=/root/.bun/install/cache bun install --frozen-lockfile
 
-COPY . .
+# Keep unrelated files and nginx changes from invalidating the app build
+COPY index.html vite.config.ts svelte.config.js tsconfig*.json ./
+COPY src ./src
+COPY public ./public
 RUN bun run build
 
 FROM nginx:stable-alpine AS runtime
