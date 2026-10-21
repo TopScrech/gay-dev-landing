@@ -17,8 +17,11 @@ export const LINKS = {
 // Listed under the Games dropdown in the header
 export const games = [{ title: GAME_TITLE, href: '/games/untitled' }]
 
-// YouTube/Vimeo embed URL. Empty shows the poster with "Trailer coming soon"
+// YouTube/Vimeo embed URL. Takes priority over TRAILER_VIDEO when set
 export const TRAILER_URL = ''
+
+// Self-hosted video in public/, played when the seal is pressed. With both empty the poster reads "Trailer coming soon"
+export const TRAILER_VIDEO = '/videos/teaser-01.mp4'
 
 // Product owner shown above the teams on the About page
 export const PRODUCT_OWNER = { name: 'Alex', role: 'Product Owner' }

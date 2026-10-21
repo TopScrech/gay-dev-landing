@@ -1,21 +1,25 @@
 <script lang="ts">
-  // The trailer frame: a poster with a wax-seal play button, swapped for the embed only when pressed.
-  // With no TRAILER_URL in site.ts the seal is disabled and reads "Trailer coming soon"
+  // The trailer frame: a poster with a wax-seal play button, swapped for the TRAILER_URL embed or the self-hosted
+  // TRAILER_VIDEO only when pressed. With neither in site.ts the seal is disabled and reads "Trailer coming soon"
   import Asset from './Asset.svelte'
-  import { GAME_TITLE, TRAILER_URL } from '../lib/site'
+  import { GAME_TITLE, TRAILER_URL, TRAILER_VIDEO } from '../lib/site'
 
   let playing = $state(false)
+  const ready = Boolean(TRAILER_URL || TRAILER_VIDEO)
 </script>
 
 <div class="frame">
-  <div class="player">
+  <div class="player" class:native={playing && !TRAILER_URL}>
     {#if playing && TRAILER_URL}
       <iframe src="{TRAILER_URL}?autoplay=1" title="{GAME_TITLE} trailer" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    {:else if playing && TRAILER_VIDEO}
+      <!-- svelte-ignore a11y_media_has_caption -->
+      <video src={TRAILER_VIDEO} title="{GAME_TITLE} trailer" controls autoplay playsinline></video>
     {:else}
       <Asset src="/images/trailer-poster.jpg" alt="" ratio="16 / 9" />
-      <button class="play" disabled={!TRAILER_URL} onclick={() => (playing = true)}>
+      <button class="play" disabled={!ready} onclick={() => (playing = true)}>
         <span class="play-icon" aria-hidden="true"></span>
-        {TRAILER_URL ? 'Play the trailer' : 'Trailer coming soon'}
+        {ready ? 'Play the trailer' : 'Trailer coming soon'}
       </button>
     {/if}
   </div>
@@ -25,7 +29,9 @@
   /* The shadow sits on the wrapper so the chipped clip on the player doesn't cut it off */
   .frame { filter: drop-shadow(0 30px 40px oklch(0.08 0.03 280 / 0.8)); }
   .player { position: relative; overflow: hidden; clip-path: var(--chip-b); }
-  .player iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+  /* The chipped edge would bite into the native controls along the bottom */
+  .player.native { clip-path: none; }
+  .player iframe, .player video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: var(--night-deep); }
   .play {
     position: absolute;
     inset: 0;
