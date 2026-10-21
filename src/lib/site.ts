@@ -43,7 +43,7 @@ export const teams = [
   },
   {
     slug: 'art', name: 'Art',
-    lead: { name: 'Lizet', role: 'Lead Artist' },
+    lead: { name: 'Lizet', role: 'Lead Artist', avatar: '/images/team/art/lead.gif' },
     paragraphs: [
       'Art gives the marsh its crooked silhouette, the lodge its cluttered warmth, and the monsters faces you might almost trust',
       'From the smallest workshop oddity to the shapes lurking beyond the lantern light, the team balances a little charm with the feeling that something is very wrong',

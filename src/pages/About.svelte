@@ -55,9 +55,10 @@
         </div>
         <figure class="lead">
           <Asset
-            src={team.lead.portrait ?? `/images/team/${team.slug}/lead.png`}
+            src={team.lead.portrait ?? team.lead.avatar ?? `/images/team/${team.slug}/lead.png`}
             alt="{team.lead.portrait ? 'Portrait' : 'Discord avatar'} of {team.lead.name}, {team.lead.role}"
-            ratio="3 / 4"
+            ratio={team.lead.avatar ? '1 / 1' : '3 / 4'}
+            cutout={!!team.lead.avatar}
           />
           <figcaption><span class="name">{team.lead.name}</span> {team.lead.role}</figcaption>
         </figure>
