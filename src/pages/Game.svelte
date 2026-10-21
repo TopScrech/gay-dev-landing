@@ -81,19 +81,6 @@
 
 <!-- <MerchSection /> -->
 
-<section class="cta" aria-labelledby="cta-title">
-  <Asset cover src="/images/cta.jpg" alt="" />
-  <div class="cta-inner container">
-    <h2 id="cta-title">The lamps go out at nine</h2>
-    <!-- <p>Wishlist {GAME_TITLE} so you hear when the lodge opens, or watch the trailer and see what waits in the marsh.</p> -->
-    <p>Watch the teaser and see what waits in the marsh.</p>
-    <div class="actions">
-      <!-- <WishlistButton /> -->
-      <a class="btn btn-ghost" href="#trailer">Watch the teaser</a>
-    </div>
-  </div>
-</section>
-
 <style>
   .hero {
     position: relative;
@@ -194,28 +181,6 @@
   .gallery-grid :global(.shot-2) { rotate: 1deg; }
   .gallery-grid :global(.shot-3) { rotate: -1.1deg; }
   .gallery-grid :global(.shot-4) { rotate: 0.5deg; } */
-
-  .cta {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    min-height: clamp(520px, 72vh, 720px);
-    padding-top: clamp(72px, 10vw, 140px);
-    isolation: isolate;
-    overflow: hidden;
-  }
-  .cta :global(.asset) { z-index: -1; }
-  .cta::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    height: 40%;
-    z-index: -1;
-    background: linear-gradient(var(--night), transparent);
-  }
-  .cta-inner { text-align: center; display: grid; justify-items: center; gap: 16px; }
-  .cta h2 { font-size: clamp(2.4rem, 6vw, 4.5rem); }
-  .cta p { max-width: 46ch; margin: 0; font-size: 1.1rem; }
 
   .credit {
     position: absolute;
