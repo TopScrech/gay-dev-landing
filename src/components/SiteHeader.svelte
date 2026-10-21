@@ -4,7 +4,7 @@
   import { STUDIO_NAME, games } from '../lib/site'
 
   const nav = [
-    { href: '/merch', label: 'Merch' },
+    // { href: '/merch', label: 'Merch' },
     { href: '/devlog', label: 'Dev blog' },
     { href: '/about', label: 'About' },
   ]

@@ -1,7 +1,7 @@
 <script lang="ts">
   // The game on the studio home: title and one line on the left, the way in stacked on the right, the trailer below
   import TrailerPlayer from './TrailerPlayer.svelte'
-  import WishlistButton from './WishlistButton.svelte'
+  // import WishlistButton from './WishlistButton.svelte'
   import { GAME_TITLE, TAGLINE, games } from '../lib/site'
 
   const game = games[0]
@@ -14,7 +14,7 @@
       <p class="tagline">{TAGLINE}</p>
     </div>
     <div class="head-actions">
-      <WishlistButton />
+      <!-- <WishlistButton /> -->
       <a class="text-link" href={game.href}>Learn more</a>
     </div>
   </div>

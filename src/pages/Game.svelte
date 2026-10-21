@@ -1,8 +1,8 @@
 <script lang="ts">
   import Asset from '../components/Asset.svelte'
-  import MerchSection from '../components/MerchSection.svelte'
+  // import MerchSection from '../components/MerchSection.svelte'
   import TrailerPlayer from '../components/TrailerPlayer.svelte'
-  import WishlistButton from '../components/WishlistButton.svelte'
+  // import WishlistButton from '../components/WishlistButton.svelte'
   import { GAME_TITLE, STUDIO_NAME, TAGLINE } from '../lib/site'
 
   let logoFailed = $state(false)
@@ -38,8 +38,8 @@
     </h1>
     <p class="tagline">{TAGLINE}</p>
     <div class="actions">
-      <WishlistButton />
-      <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
+      <!-- <WishlistButton /> -->
+      <a class="btn btn-ghost" href="#trailer">Watch the teaser</a>
     </div>
   </div>
   <p class="credit">A game by <a href="/">{STUDIO_NAME}</a></p>
@@ -70,25 +70,26 @@
   {/each}
 </section>
 
-<section class="gallery container" aria-labelledby="gallery-title">
+<!-- <section class="gallery container" aria-labelledby="gallery-title">
   <h2 id="gallery-title" class="section-title">Postcards from the marsh</h2>
   <div class="gallery-grid">
     {#each [1, 2, 3, 4] as n (n)}
       <Asset class="shot shot-{n}" src="/images/screenshots/0{n}.jpg" alt="Screenshot {n}" />
     {/each}
   </div>
-</section>
+</section> -->
 
-<MerchSection />
+<!-- <MerchSection /> -->
 
 <section class="cta" aria-labelledby="cta-title">
   <Asset cover src="/images/cta.jpg" alt="" />
   <div class="cta-inner container">
     <h2 id="cta-title">The lamps go out at nine</h2>
-    <p>Wishlist {GAME_TITLE} so you hear when the lodge opens, or watch the trailer and see what waits in the marsh.</p>
+    <!-- <p>Wishlist {GAME_TITLE} so you hear when the lodge opens, or watch the trailer and see what waits in the marsh.</p> -->
+    <p>Watch the teaser and see what waits in the marsh.</p>
     <div class="actions">
-      <WishlistButton />
-      <a class="btn btn-ghost" href="#trailer">Watch the trailer</a>
+      <!-- <WishlistButton /> -->
+      <a class="btn btn-ghost" href="#trailer">Watch the teaser</a>
     </div>
   </div>
 </section>
@@ -179,6 +180,7 @@
   .feature h3 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
   .feature p { max-width: 42ch; margin: 18px 0 0; color: var(--ink-soft); font-size: 1.075rem; }
 
+  /* Gallery section is commented out above
   .gallery { padding-block: clamp(64px, 9vw, 120px); }
   .gallery .section-title { margin-bottom: clamp(28px, 4vw, 48px); }
   .gallery-grid {
@@ -191,7 +193,7 @@
   .gallery-grid :global(.shot-1) { rotate: -0.6deg; }
   .gallery-grid :global(.shot-2) { rotate: 1deg; }
   .gallery-grid :global(.shot-3) { rotate: -1.1deg; }
-  .gallery-grid :global(.shot-4) { rotate: 0.5deg; }
+  .gallery-grid :global(.shot-4) { rotate: 0.5deg; } */
 
   .cta {
     position: relative;
@@ -238,8 +240,8 @@
     .feature.flip :global(.asset) { order: 0; }
   }
   @media (max-width: 640px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-grid :global(.shot) { grid-column: auto !important; aspect-ratio: 16 / 9 !important; height: auto !important; }
+    /* .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-grid :global(.shot) { grid-column: auto !important; aspect-ratio: 16 / 9 !important; height: auto !important; } */
     .lede-sub { margin-left: 0; }
   }
   @media (prefers-reduced-motion: reduce) {

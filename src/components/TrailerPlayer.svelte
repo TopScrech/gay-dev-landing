@@ -19,7 +19,7 @@
       <Asset src="/images/trailer-poster.jpg" alt="" ratio="16 / 9" />
       <button class="play" disabled={!ready} onclick={() => (playing = true)}>
         <span class="play-icon" aria-hidden="true"></span>
-        {ready ? 'Play the trailer' : 'Trailer coming soon'}
+        {ready ? 'Play the teaser' : 'Trailer coming soon'}
       </button>
     {/if}
   </div>

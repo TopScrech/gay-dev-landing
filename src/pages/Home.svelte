@@ -3,7 +3,7 @@
   import Asset from '../components/Asset.svelte'
   import FeaturedGame from '../components/FeaturedGame.svelte'
   import HomeHero from '../components/HomeHero.svelte'
-  import MerchSection from '../components/MerchSection.svelte'
+  // import MerchSection from '../components/MerchSection.svelte'
   import { STUDIO_NAME, teams } from '../lib/site'
   import { formatDate, posts } from '../lib/posts'
 
@@ -59,7 +59,7 @@
   </section>
 {/if}
 
-<MerchSection />
+<!-- <MerchSection /> -->
 
 <style>
   h2 { font-size: clamp(2.4rem, 5.5vw, 4rem); }

@@ -8,7 +8,7 @@
   import Devlog from './pages/Devlog.svelte'
   import Game from './pages/Game.svelte'
   import Home from './pages/Home.svelte'
-  import Merch from './pages/Merch.svelte'
+  // import Merch from './pages/Merch.svelte'
   import Missing from './pages/Missing.svelte'
   import Post from './pages/Post.svelte'
 
@@ -38,8 +38,8 @@
         <Devlog />
       {:else if route.page === 'post'}
         <Post slug={route.slug} />
-      {:else if route.page === 'merch'}
-        <Merch />
+      <!-- {:else if route.page === 'merch'}
+        <Merch /> -->
       {:else}
         <Missing />
       {/if}
