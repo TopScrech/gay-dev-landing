@@ -14,7 +14,7 @@
       <iframe src="{TRAILER_URL}?autoplay=1" title="{GAME_TITLE} trailer" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     {:else if playing && TRAILER_VIDEO}
       <!-- svelte-ignore a11y_media_has_caption -->
-      <video src={TRAILER_VIDEO} title="{GAME_TITLE} trailer" controls autoplay playsinline></video>
+      <video src={TRAILER_VIDEO} aria-label="{GAME_TITLE} trailer" controls autoplay playsinline></video>
     {:else}
       <Asset src="/images/trailer-poster.jpg" alt="" ratio="16 / 9" />
       <button class="play" disabled={!ready} onclick={() => (playing = true)}>
