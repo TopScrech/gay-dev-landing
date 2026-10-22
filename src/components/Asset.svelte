@@ -1,13 +1,14 @@
 <script lang="ts">
   // An image slot: shows `src` once the file exists in public/, a blank block until then.
   // `cutout` is for transparent PNGs: no panel behind the image once it loads
-  type Props = { src: string; alt: string; ratio?: string; eager?: boolean; cover?: boolean; cutout?: boolean; class?: string }
-  let { src, alt, ratio, eager = false, cover = false, cutout = false, class: className = '' }: Props = $props()
+  type Chip = 'a' | 'b' | 'c'
+  type Props = { src: string; alt: string; ratio?: string; eager?: boolean; cover?: boolean; cutout?: boolean; chip?: Chip; class?: string }
+  let { src, alt, ratio, eager = false, cover = false, cutout = false, chip: chipOverride, class: className = '' }: Props = $props()
 
   let failed = $state(false)
 
   // Each print gets one of three chipped outlines, picked from its path so it stays put between renders
-  const chip = $derived(['a', 'b', 'c'][[...src].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 3])
+  const chip = $derived(chipOverride ?? (['a', 'b', 'c'] as const)[[...src].reduce((sum, c) => sum + c.charCodeAt(0), 0) % 3])
 </script>
 
 <div class="asset {className}" class:cover class:cutout={cutout && !failed} class:blank={failed} style:aspect-ratio={ratio} style:--chip="var(--chip-{chip})">

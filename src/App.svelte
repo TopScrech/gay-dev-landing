@@ -15,7 +15,7 @@
   const route = $derived(resolve(location_.path))
 
   $effect(() => {
-    const titles = { home: '', game: GAME_TITLE, about: 'About', devlog: 'Dev blog', merch: 'Merch', missing: 'Lost in the marsh' }
+    const titles = { home: '', game: GAME_TITLE, about: 'About', devlog: 'Dev blog', merch: 'Merch', missing: 'Lost in the woods' }
     const part = route.page === 'post' ? posts.find((p) => p.slug === route.slug)?.title : titles[route.page]
     document.title = part ? `${part} · ${STUDIO_NAME}` : STUDIO_NAME
   })

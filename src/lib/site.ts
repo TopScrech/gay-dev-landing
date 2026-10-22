@@ -15,7 +15,7 @@ export const LINKS = {
 }
 
 // Listed under the Games dropdown in the header
-export const games = [{ title: GAME_TITLE, href: '/games/untitled' }]
+export const games = [{ title: GAME_TITLE, href: '/games/ravenshall' }]
 
 // YouTube/Vimeo embed URL. Takes priority over TRAILER_VIDEO when set
 export const TRAILER_URL = ''

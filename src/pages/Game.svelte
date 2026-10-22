@@ -9,19 +9,23 @@
 
   const features = [
     {
-      title: 'Tools that shouldn’t work',
-      text: 'A pepper mill that grinds out hexes. A butterfly net that only catches shadows. A kettle that screams at ghosts. Craft them at the lodge bench, combine them, and misuse them creatively.',
-      shot: 1,
+      title: 'Breathe in, fire back',
+      text: 'Built for fights. Suck in air to hurt creatures and tear through cobwebs, or grab an object, hold it, and launch it back at whatever is chasing you.',
+      art: '/images/tools/air-tool.webp',
+      chip: 'a' as const,
     },
     {
-      title: 'Monsters with habits',
-      text: 'Everything in the marsh keeps a routine. Learn when the Bog Choir sleeps, what the Tallow Hound eats, and why nobody whistles near the old well. Your ledger fills in as you watch.',
-      shot: 2,
+      title: 'The monster eye',
+      text: 'Click to see what used to be there. A cane’s silhouette against the wall, the same cane later in an NPC’s hand. If a shape has no match, something has gone missing. The view is warped and narrow while you look.',
+      art: '/images/tools/monster-eye.webp',
+      chip: 'a' as const,
+      tint: true,
     },
     {
-      title: 'Puzzle fights at full panic',
-      text: 'Every fight is a puzzle on a timer you can hear breathing. Swap tools mid-hunt, rearrange the ground under your feet, and work out the creature’s weakness before it works out yours.',
-      shot: 3,
+      title: 'A lamp with a fairy in it',
+      text: 'Her glow makes fairy dust visible to the naked eye, and she changes color when other fae are near. Just walk close enough and watch her light.',
+      art: '/images/tools/lamp.webp',
+      chip: 'a' as const,
     },
   ]
 </script>
@@ -58,10 +62,10 @@
 </section>
 
 <section class="features container" aria-labelledby="features-title">
-  <h2 id="features-title" class="section-title">What’s in the crate</h2>
-  {#each features as f, i (f.title)}
-    <article class="feature" class:flip={i % 2 === 1}>
-      <Asset src="/images/screenshots/0{f.shot}.jpg" alt="Screenshot: {f.title}" ratio="16 / 10" />
+  <h2 id="features-title" class="section-title">Tools that shouldn’t work</h2>
+  {#each features as f (f.title)}
+    <article class="feature">
+      <Asset class={f.tint ? 'tint' : ''} src={f.art} alt={f.title} ratio="1 / 1" chip={f.chip} />
       <div class="feature-text">
         <h3>{f.title}</h3>
         <p>{f.text}</p>
@@ -154,16 +158,16 @@
   .features .section-title { margin-bottom: clamp(40px, 6vw, 80px); }
   .feature {
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
+    grid-template-columns: minmax(0, 360px) 1fr;
     align-items: center;
     gap: clamp(28px, 5vw, 80px);
   }
-  .feature + .feature { margin-top: clamp(56px, 9vw, 120px); }
-  .feature.flip { grid-template-columns: 1fr 1.35fr; }
-  .feature.flip :global(.asset) { order: 2; }
+  .feature + .feature { margin-top: clamp(32px, 5vw, 64px); }
   /* Prints pinned up by hand: never quite level */
   .feature :global(.asset) { rotate: -0.8deg; }
-  .feature.flip :global(.asset) { rotate: 0.7deg; }
+  .feature:nth-of-type(even) :global(.asset) { rotate: 0.7deg; }
+  /* Transparent art sits on a dark purple panel instead of the default print color */
+  .feature :global(.asset.tint) { background: radial-gradient(circle, oklch(0.3 0.11 300), oklch(0.18 0.07 295)); }
   .feature h3 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
   .feature p { max-width: 42ch; margin: 18px 0 0; color: var(--ink-soft); font-size: 1.075rem; }
 
@@ -201,8 +205,8 @@
   .credit a:hover { color: var(--wisp); }
 
   @media (max-width: 860px) {
-    .feature, .feature.flip { grid-template-columns: 1fr; }
-    .feature.flip :global(.asset) { order: 0; }
+    .feature { grid-template-columns: 1fr; }
+    .feature :global(.asset) { width: min(100%, 320px); justify-self: center; }
   }
   @media (max-width: 640px) {
     /* .gallery-grid { grid-template-columns: 1fr; }
