@@ -5,7 +5,7 @@
 </script>
 
 <PageHero title="About" image="/images/about/hero.jpg">
-  <p>{GAME_TITLE} is a first-person monster hunt about a haunted marsh, a lodge full of strange inventions, and the person foolish enough to take the job.</p>
+  <p>This is where you find all about us!</p>
 </PageHero>
 
 <section class="game-intro container" aria-labelledby="studio-title">
